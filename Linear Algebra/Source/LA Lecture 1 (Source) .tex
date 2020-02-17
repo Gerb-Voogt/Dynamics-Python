@@ -1,0 +1,158 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amssymb}
+
+\graphicspath{ {./images} }
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+\section{Lecture 1: Linear systems and echelon forms (11/02/2020)}
+\subsection{Introduction}
+Linear algebra is a branch of mathematics that deals with the analysis of linear systems
+of equations. It has common applications in many branches of both physical sciences (Quantum mechanics, relativistic mechanics) as well
+as computer science (graphics proccesing, machine learning) and economics.\\
+\\
+In general linear equations take the following form:
+\begin{equation}
+    a_1x_1 + a_2x_2 + \cdots + a_nx_n = b
+\end{equation}
+or in sigma notation:
+\begin{equation}
+    \sum_{i=1}^{n} a_ix_i = b
+\end{equation}
+Where $a_i$ are the coefficients and $x_i$ the variables.\\
+\\
+Any system of equations has either a single unique solution, no solution at all, 
+or infinitly many solutions. Determening which of these is correct for any given system will be discussed later.
+
+\subsection{Systems of equations and matrices}
+Systems of equations can be very tedious to write out. It's also very difficult
+to correctly manipulate the rows of a system of equations without making small mistakes.
+Because of this the preffered method of writing systems of equations is in a $m\times n$ matrix,
+such that the rows contain the equations and the columns the coefficients. A system of
+equations and the augmented matrix associated with said system are represented below.
+\\
+\begin{align*}
+    \begin{cases} 
+        x_1 + 5x_2 + 3x_3 &= 1 \\
+        2x_1 + x_2 + 15x_3 &= 8 \\
+        -x_1 + x_2 + 3x_3 &= 1 \\
+       \end{cases}\hspace{-1em}
+    \qquad &\Leftrightarrow \quad
+    \begin{bmatrix}[ccc|c]
+       1 & 5 & 3 & 1\\
+       2 & 1 & 15 & 8\\
+       -1 & 1 & 3 & 1\\
+    \end{bmatrix}      
+\end{align*}
+Any given system of equation can be manipulated with the 3 fundamental row operations.
+These are as follows:
+\begin{description}
+    \item[First] Replacing a row with the sum of itself and another row
+    \item[Second] Interchanging two rows
+    \item[Third]  Multiplying a row by any non-zero constant
+\end{description}
+Application of these row operations to solve for variables is commonly referred to as
+Gaussian elimination. The second and third rule are fairly self explanatory.
+Rule 1 however is best demonstrated with an example.
+\begin{align*}
+    \begin{bmatrix}[cc|c]
+        1 & 1 & 6\\
+        2 & 3 & 8\\
+    \end{bmatrix}\hspace{-1em}
+    \qquad &\sim \quad
+    \begin{bmatrix}[cc|c]
+       1 & 1 & 6 \\
+       0 & 1 & -4 \\
+    \end{bmatrix}      
+\end{align*}
+Note that the first equation was multiplied by -2 and subsequently added to equation 2.
+The second row now has the form of $x_2 = -4$. The answer for $x_1$ can now be determined via
+backsubsitution. This gives the following solution: $(x_1, x_2) = (10, -4)$
+
+\subsection{Consistency of systems}
+A system of equations can either be consistent, meaning the system has atleast 1 solution, or 
+inconsistent, meaning no solution for the system excists. A system can be found 
+inconsistent if Gaussian elimination gives a row in the following form:
+\begin{align*}
+    \begin{bmatrix}[ccc|c]
+        0 & 0 & 0 & c\\
+    \end{bmatrix}
+    \;, c \neq 0
+\end{align*}
+As common sense tells us this is impossible since all 0 coefficients can never produce
+a result that is not equal to zero. The following form can also arise:
+\begin{align*}
+    \begin{bmatrix}[ccc|c]
+        0 & 0 & 0 & 0\\
+    \end{bmatrix}
+\end{align*}
+This system is not inconsistent since all 0 coefficients should always produce 0. This form arises from 
+gaussian elemination when the system has a redundant equation, which is to say, an equation that does not
+add any extra information. An example of this is two rows with the same equation written differently.\\
+\\
+Consistent systems are typically solved by row reduction and solving for all unknown variables if there is a unique
+solution. When the system does not have a unique solution, but instead infinitly many the system is solved by expressing
+all basic variables in terms of free variables. More on basic and free variables will be covered in the echelon form section.
+\subsection{Echelon forms}
+There are a couple conditions which need to be met for a matrix to be considered in echelon form. These are
+as follows:
+\begin{description}
+    \item[First] All non-zero rows are above the rows of all zeros
+    \item[Second] Each pivot is to the right of the previous pivot
+    \item[Third] All entries below a pivot are zero.  
+\end{description}
+Applying these rules gives a matrix of the following form:
+\begin{align*}
+    \begin{bmatrix}[ccc|c]
+        \blacksquare & * & * & *\\
+        0 & \blacksquare & * & *\\
+        0 & 0 & \blacksquare & *\\
+    \end{bmatrix}
+\end{align*}
+$\blacksquare$ represent pivots and $*$ can be any random number.\\
+\\
+Echelon form matrices can also be further reduced to reduced echelon form. In this
+case all the entries above a pivot are 0 and the pivots are all equal to 1. This gives
+the following matrix:
+\begin{align*}
+    \begin{bmatrix}[ccc|c]
+        1 & 0 & 0 & *\\
+        0 & 1 & 0 & *\\
+        0 & 0 & 1 & *\\
+    \end{bmatrix}
+\end{align*}
+\\
+When a column has no pivot in reduced echelon the variable is what is referred to as a free variable.
+The system will have a solution for any random value of the free variables and thus, infinitly many solutions.
+An example of this will be listed below:
+\begin{align*}
+    \begin{bmatrix}[ccccc|c]
+        1 & 0 & 0 & 0 & 3 & 5\\
+        0 & 1 & 0 & 0 & -4 & 1\\
+        0 & 0 & 0 & 1 & 9 & 4\\
+        0 & 0 & 0 & 0 & 0 & 0 \\
+    \end{bmatrix} 
+    \hspace{-1em}
+    \qquad &\Rightarrow \quad
+    \begin{cases} 
+        x_1 &= 5 + 3x_5 \\
+        x_2 &= 1 + 4x_5\\
+        x_3 &= free\\
+        x_4 &= 4 - 9x_5\\
+        x_5 &= free\\
+       \end{cases}     
+\end{align*}
+
+\end{document}
