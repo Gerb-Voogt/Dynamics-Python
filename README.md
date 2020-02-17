@@ -1,1 +1,2 @@
-Python Q3 (Dynamics)
+Dynamics Q3 Lecture Notes and Python assignments
+Linear Algebra Lecture Notes
