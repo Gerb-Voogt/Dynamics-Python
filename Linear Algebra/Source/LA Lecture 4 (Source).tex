@@ -1,0 +1,78 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+\graphicspath{ {./images} }
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+
+\setcounter{section}{3}
+\section{Lecture 4: Linear Independence (21/02/2020)}
+\subsection{Defenition of linear depency in $\mathbb{R}^n$ space}
+A set of vectors $\{ \vec{v}_1 , \vec{v}_2, \cdots, \vec{v}_n \}$ is linearly independent only
+if the homogenous equation has a non-trivial solution for $c_1\vec{v}_1 + c_2\vec{v}_2 + \cdots + c_p\vec{v}_p = \vec{0}$.
+If there is no non-trivial solution the set is linearly dependent. Thus, the set of a single vector
+$\vec{v}$ is only linearly dependent if the vector $\vec{v}$ is the zero-vector. This can be extended
+to higher dimensions by recognizing that any set containing the zero-vector will always be linearly dependent.\\
+\\
+This means that in practice a set of vectors is linearly dependent if at least one of the vectors
+in the set can be written as a linear combination of the others. Otherwise the set is linearly independent.
+This does not imply in any way that any vector $\vec{v}_k$ in a random set can be written as a linear combination
+of other vectors in the set. A set only needs to contain a single vector which can be written as a linear combination
+of the other vectors in the set to be considered a linearly dependent set.
+Through example the following relation can also be found: if a set of $p$ vectors in $\mathbb{R}^n$ space
+where $p > n$, then the set will always be linearly dependent.
+
+\subsection{Some examples}
+let $\vec{v}_1,\vec{v}_2,\vec{v}_3,\vec{v}_4 \in \mathbb{R}^4$. Prove that $\{\vec{v}_1,\vec{v}_2,\vec{v}_3 \}$ and $\{\vec{v}_1,\vec{v}_2,\vec{v}_3, \vec{v}_4 \}$ are both
+linearly dependent if $\{ \vec{v}_1,\vec{v}_2,\vec{v}_3 \}$ is linearly dependent.\\
+\\
+Let's assume the linear depency of the first set is of the form $\vec{v}_1 = c_1\vec{v}_2 + c_2\vec{v}_3$\\
+If this extended to the second set in $\mathbb{R}^4$ it can be found that the second set
+also has to be linearly dependent since the fourth vector can be scaled by $0$ as follows: $\vec{v}_1 = c_1\vec{v}_2 + c_1\vec{v}_3 + 0 \cdot \vec{v}_4$
+\\
+\\
+let $\vec{v}_1 = \langle 1, -1, 4 \rangle$, $\vec{v}_2 = \langle -3, 9, -6 \rangle$ and $\vec{v}_3 = \langle 5, -7, h \rangle$. For which value of $h$ is this set linearly independent?\\
+The set is linearly dependent if there is a non-trivial solution for $c_1\vec{v}_1 + c_2\vec{v}_2 + \cdots + c_p\vec{v}_p = \vec{0}$.
+Thus:
+\begin{align*}
+  \set*{\begin{pmatrix} 1\\ -1\\ 4\\ \end{pmatrix},
+    \begin{pmatrix} 3\\ -5\\ 7\\ \end{pmatrix},
+    \begin{pmatrix} -1\\ 5\\ h\\ \end{pmatrix}}
+  \Rightarrow
+  \begin{bmatrix}[ccc|c]
+    1 & 3 & -1 & 0\\
+    -1 & -5 & 5 & 0\\
+    4 & 7 & h & 0\\
+  \end{bmatrix}
+  \sim
+  \begin{bmatrix}[ccc|c]
+    1 & 3 & -1 & 0\\
+    0 & -1 & -2 & 0\\
+    0 & 0 & h-6 & 0\\
+  \end{bmatrix}
+\end{align*}
+From this we can see that the third column will have a pivot when $h - 6 \neq 0$.
+Thus: The set is linearly dependent when $h=6$ since this only leaves trivial
+solutions, and linearly independent for $h\neq 6$, since this leaves
+an unique of non-trivial solutions.
+
+
+
+\end{document}
