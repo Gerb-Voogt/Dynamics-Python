@@ -1,0 +1,114 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amssymb}
+
+\graphicspath{ {./images} }
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+\setcounter{section}{4}
+
+\section{Lecture 5: Linear transformations and standard matrices (25/02/2020)}
+\subsection{Matrix transformations}
+\begin{gather}
+  A\vec{x} = \vec{b}\\
+  \sum_{i=1}^{n} c_i\vec{x}_i = \vec{b}
+\end{gather}
+The difference between equation (1) and (2) is just a matter of notation. However,
+a matrix equation does not have to be related to a linear combination of vectors. The
+matrix $A$ can also be thought of as an object that 'acts' on a vector $\vec{x}$ to produce
+a new vector $A\vec{x}$. From this perspective, $A\vec{x} = \vec{b}$ amounts to finding all the
+vectors $\vec{x}$ in $\mathbb{R}^n$ space which are transformed to the vector $\vec{b}$ (or $T(\vec{x})$)
+in $\mathbb{R}^m$ space. The set $\mathbb{R}^n$ is called the domain and the set $\mathbb{R}^m$ is called the codomain.
+$T(\vec{x})$ is the range.\\
+\\
+\underline{Theorem:}
+let $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$, $T(\vec{x}) = A\vec{x}$. A vector $\vec{b}$ lies in the range
+of $T$ if and only if the system $A\vec{x} = \vec{b}$ is consistent.
+
+\subsection{Linear transformation}
+A transformation is defined as a linear transformation if:
+\begin{gather}
+  T(\vec{u} + \vec{v}) = T(\vec{u}) + T(\vec{v}) \;\text{for all vectors $\vec{u}$,$\vec{v}$ in $\mathbb{R}^n$.}\\
+  T(c\vec{u}) = cT(\vec{u}) \; \text{for all scalars $c$ in $\mathbb{R}$ and $\vec{u}$ in $\mathbb{R}^n$.}
+\end{gather}
+\underline{Theorem:}
+For any $m \times n$ matrix $A$, the matrix transformation $T(\vec{x}) = A\vec{x}$ is a 
+linear transformation $\mathbb{R}^n \rightarrow \mathbb{R}^m$.
+
+Note: The zero vector will always map to another zero-vecotr with different dimensions.
+Equation (4) can be generalized as follows:
+\begin{gather}
+  T(\sum_{i=1}^{n} c_i\vec{v}_i) = \sum_{i=1}^{n} c_iT(\vec{v}_i)
+\end{gather}
+Geometrically, any linear transformation can be viewed as a mapping from any space $\mathbb{R}^n$ to any other space $\mathbb{R}^m$
+where $n > m$ and the space will not curve in any way. The space can however translate, rotate, contract, expand, shear or be 
+projected on a single line\footnote{This is related to eigenvalues and eigenvectors, but that will be covered Linear Algebra 2}
+
+\subsection{Numerical example of a linear Transformation and a non-linear transformation}
+Linear Transformation:
+\begin{align*}
+  T(\vec{x}) = A\vec{x} = 
+    \begin{bmatrix}
+      1 & -3\\
+      3 & 5\\
+      -1 & 7\\
+    \end{bmatrix}
+    \cdot
+    \begin{pmatrix} x_1 \\ x_2 \\ \end{pmatrix} 
+    =
+    \begin{pmatrix}
+      x_1 - 3x_2\\
+      3x_1 - 5x_2\\
+      -x_1 + 7x_2\\
+    \end{pmatrix}
+\end{align*}
+Note that the vector $\vec{x}$ is now mapped from a 2 dimensional vector $\langle x_1, x_2 \rangle$ to 
+a 3 dimensional vector $\langle x_1 - 3x_2, 3x_1 - 5x_2, -x_1 + 7x_2 \rangle$.\\
+\\
+Non-linear transformation:
+\begin{align*}
+  S\left( \begin{pmatrix} x_1\\ x_2\\ \end{pmatrix} \right) =
+    \begin{pmatrix} x_1\cdot x_2\\ x_1-x_2\\ \end{pmatrix}
+\\
+T\left( \begin{pmatrix} x_1\\ x_2\\ \end{pmatrix} \right) =
+  \begin{pmatrix} 2 + x_1\\ 3-x_1-x_2\\ \end{pmatrix}
+\end{align*}
+Note the multiplication in the first example and the extra constants not multiplied by a variable make these
+transformation non-linear. in the first example the space would be rotated because of the multiplication.
+The second example would map the zero-vector $\vec{0} = \langle 0, 0 \rangle$ to the point $\langle 2, 3 \rangle$. If we recall
+the definition, the zero-vector should always map to another 0 vector.
+
+
+\subsection{Standard matrices}
+\underline{Theorem:}
+let $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ be a linear transformation. Then there is a unique $m \times n$ matrix $A$ such that
+$T(\vec{x}) = A\vec{x}$. The columns of matrix $A$ are the images under $T$ of the standard unit vectors:
+\begin{align*}
+  M_T = 
+  \begin{bmatrix} T(\boldsymbol{\hat{e}_1}) & \cdots & T(\boldsymbol{\hat{e}_n}) \end{bmatrix}
+\end{align*}
+$A$ is called the standard matrix of $T$.\\
+\\
+A rotation about the origin with the angle $\phi$ is a linear transformation with the standard matrix:
+\begin{align*}
+  M_T = 
+  \begin{bmatrix}
+    \cos(\phi) & -\sin(\phi)\\
+    \sin(\phi) & \cos(\phi)
+  \end{bmatrix}
+\end{align*}
+
+
+\end{document}
