@@ -1,0 +1,182 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amssymb}
+
+\graphicspath{ {./images} }
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+
+\begin{document}
+
+\setcounter{section}{5}
+\section{Lecture 6: Matrix Operations (28/02/2020)}
+\subsection{Types of matrices}
+There are several different types of matrices, described by there entries and rank. These are as follows:
+\begin{itemize}
+  \item Zero matrix, all entries are 0
+  \item Square matrix, $m\times n$ matrix where $m = n$
+  \item Diagonal matrix, matrix containing only zeros and main entries
+  \item Identity matrix, diagonal matrix where all main entries are 1
+  \item Lower/Upper triangular matrix, a square matrix in echelon form.
+\end{itemize}
+
+Examples of these are\footnote{These examples use a $3 \times 3$ matrix since it's easy to fit on the page for an example, but the matrices
+can be any $m \times n$ dimension.}: 
+\begin{align*}
+  \text{Zero Matrix: }
+  \begin{bmatrix}
+    0 & 0 & 0\\
+    0 & 0 & 0\\
+    0 & 0 & 0\\
+  \end{bmatrix}&
+  \qquad \text{Diagonal matrix: }
+  \begin{bmatrix}
+    \blacksquare & 0 & 0\\
+    0 & \blacksquare & 0\\
+    0 & 0 & \blacksquare\\
+  \end{bmatrix}
+  \\
+  \text{Identity: }
+  \begin{bmatrix}
+    1 & 0 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 1\\
+  \end{bmatrix}&
+  \qquad \text{Upper triangular matrix: }
+  \begin{bmatrix}
+    \blacksquare & * & *\\
+    0 & \blacksquare & *\\
+    0 & 0 & \blacksquare\\
+  \end{bmatrix}
+  \\
+\end{align*}
+
+\subsection{Matrix multiplication}
+\underline{Theorem:}
+Given two linear transformations $T: \mathbb{R}^p \rightarrow \mathbb{R}^n$ and 
+$S: \mathbb{R}^n \rightarrow \mathbb{R}^m$, then the composite $S \circ T: \mathbb{R}^p \rightarrow \mathbb{R}^m$,
+defined by $(S \circ T)(\vec{x}) = S(T(\vec{x}))$ is also a linear transformation.\\
+\\
+Proof that $S \circ T$ is indeed linear:\\
+For a transformation to be linear it needs to statisfy the following 2 properties:
+\begin{enumerate}
+  \item $T(\vec{u} + \vec{v}) = T(\vec{u}) + T(\vec{v})$
+  \item $T(c\vec{u}) = cT(\vec{u})$
+\end{enumerate}
+let $T: \mathbb{R}^p \rightarrow \mathbb{R}^n$ and $S: \mathbb{R}^n \rightarrow \mathbb{R}^m$ be linear transformations, 
+let $\vec{u}$ and $\vec{v}$ be vectors and let $c$ be a scalar.
+\begin{align*}
+  (S \circ T)(\vec{u} + \vec{v}) &= S(T(\vec{u}) + T(\vec{v}))\\
+                                 &= S(T(\vec{u})) + S(T(\vec{v}))\\
+                                 &= (S \circ T)(\vec{u}) + (S \circ T)(\vec{v}) \qed
+\end{align*}
+\begin{align*}
+  (S \circ T)(c\vec{u}) = S(cT(\vec{u})) &= cS(T(\vec{u}))\\
+                                         &= c(S \circ T)(\vec{u}) \qed
+\end{align*}
+
+
+The matrix multiplication of the matrices $A: m\times n$ and $B: n\times p$ is equal to the standard
+matrix of the composite mapping $S \circ T$, where $S(\vec{x}) = A\vec{x}$ and $T(\vec{x}) = B\vec{x}$.
+Note that $AB$ will be an $m\times p$ matrix.
+In general matrix multiplication takes the following form:
+\begin{align*}
+  &S: \mathbb{R}^n \rightarrow \mathbb{R}^m \quad \text{Where} \quad S(\vec{x}) = A\vec{x} \quad \text{and} \quad A: m \times n\\
+  &T: \mathbb{R}^p \rightarrow \mathbb{R}^n \quad \text{Where} \quad T(\vec{y}) = B\vec{y} \quad \text{and} \quad B: n \times p\\
+  &S \circ T: \mathbb{R}^p \rightarrow \mathbb{R}^m \quad \text{and} \quad A\cdot B : [m \times n][n \times p]\\
+\end{align*}
+
+What this means is that $S$ is a linear transformation from $\mathbb{R}^n$ to $\mathbb{R}^m$ and $T$ a linear transformation from
+$\mathbb{R}^p$ to $\mathbb{R}^m$. The matrix product associated with that linear transformation will be a matrix product of $A$ with dimension $n \times m$ and a matrix
+$B$ with dimensions $n \times p$, which will output a single matrix of dimensions $m \times p$.
+\\
+\\
+Computing a specific entry of a matrix $AB$ can be done with the row column rule. The most general form of matrix multiplication looks like the following:
+entry $(i, j)$ of $AB$ equals $\text{row}_i(A)b_j$.
+
+\begin{align*}
+  (AB)_{ij} &= a_{1i}b_{1j} + a_{i2}b_{2j} + \cdots + a_{in}b_{nj}\\
+            &= \sum_{k=1}^{n} a_{ik}b_{kj}
+\end{align*}
+
+\begin{align*}
+  \begin{bmatrix}
+    a_{11} & \cdots & a_{1j} & \cdots & a_{1n}\\
+    \vdots & \,     & \vdots & \,     & \vdots\\
+    a_{i1} & \cdots & a_{ij} & \cdots & a_{in}\\
+    \vdots & \,     & \vdots & \,     & \vdots\\
+    a_{m1} & \cdots & a_{mj} & \cdots & a_{mn}\\
+  \end{bmatrix}
+  \begin{bmatrix}
+    b_{11} & \cdots & b_{1j} & \cdots & b_{1p}\\
+    \vdots & \,     & \vdots & \,     & \vdots\\
+    b_{i1} & \cdots & b_{ij} & \cdots & b_{ip}\\
+    \vdots & \,     & \vdots & \,     & \vdots\\
+    b_{n1} & \cdots & b_{nj} & \cdots & b_{np}\\
+  \end{bmatrix}
+\end{align*}
+
+There are some important algebraic properties to consider for matrix multiplication.
+Most of these will seem familiar since they look a lot like regular algebraic expressions, however there is
+1 key difference, mainly that matrices are non-communative. The rules for manipulating matrices algebraicly are as follow:
+\begin{gather}
+  AB \neq BA\\
+  A(BC) = (AB)C\\
+  A(B+C) = AB + AC\\
+  (B+C)A = BA + CA\\
+  I_mA = A = AI_n\\
+  r(AB) = (rA)B = A(rB)\\
+  A^k = AA \cdots A \text{where A is repeated $k$ times}\\
+  A^0 = I
+\end{gather}
+
+Some common mistakes that are made:
+\begin{gather}
+  AB = AC \quad \text{does not imply that $B = C$.}\\
+  AB = 0 \quad \text{does not imply that either $A$ or $B$ is always a zero-matrix, thought they could be.}\\
+  (A + B)^2 = A^2 + AB + BA + B^2 \quad \text{note that $AB \neq BA$}
+\end{gather}
+
+\subsection{Numerical example of matrix multiplication}
+let $A$ be an $2 \times 3$ matrix and let $B$ be a $3 \times 2$ matrix of the following form:
+\begin{align*}
+  \begin{bmatrix}
+    1  & 2 & 3\\
+    -1 & 0 & 2\\
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+    0 & 1\\
+    1 & -1\\
+    0 & 2\\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    0 + 2 + 0 & 1 - 2 + 6\\
+    0 + 0 + 0 & -1 +0 + 4\\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    2 & 5\\
+    0 & 3\\
+  \end{bmatrix}
+\end{align*}
+Recall that this is the same as repeated matrix-vector multiplication, and again
+the same as the dot product between a column of the second matrix and a row of the first matrix.
+
+\subsection{Transpose of a matrix}
+Might write this here, or might write it in Lecture 7 Notes haven't decided yet.
+
+\end{document}
