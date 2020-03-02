@@ -23,7 +23,7 @@
 
 \subsection{general form of vectors and matrices}
 Matrices can be thought of an $m \times n$ grid of numbers. A column vector is thus by extension
-of the form $1 \times n$. let the $\vec{x}$ be a random column vector and $A$ a $m \times 1$ matrix.  
+of the form $1 \times n$. let the $\vec{x}$ be a column vector of $n$ entries and $A$ a $m \times 1$ matrix.  
 Then: 
 \begin{align*}
   A = 
@@ -32,12 +32,12 @@ Then:
   \end{bmatrix}
   \quad \text{and} \quad 
   \vec{x} = 
-  \begin{bmatrix}
+  \begin{pmatrix}
     x_1\\
     x_2\\
     \vdots \\
     x_n\\
-  \end{bmatrix}
+  \end{pmatrix}
 \end{align*}
 \\
 The matrix vector product is defined as the following:
@@ -53,7 +53,7 @@ The matrix vector product is defined as the following:
 \end{align*}
 \\
 It is thus possible to compute the matrix-vector product using this definition, it's worth noting that
-$A\vec{x}$ of the form $m \times n$ will always be of the form $\vec{x} \in \mathbb{R}^n$ and 
+$A\vec{x}$ of the form $m \times n$ will always be of the rank $\vec{x} \in \mathbb{R}^n$ and 
 $\vec{y} = \mathbb{R}^m$. Which is to say, The matrix vector product of an $m \times n$ 
 matrix and vector of $n$ entries will output
 a vector with $m$ entries.\\
@@ -79,9 +79,9 @@ A quick numerical example will follow:
 \end{align*}
 
 \subsection{Algebraic rules for matrix vector multiplication}
-There are some important algebraic rules to note for matrix-vector multiplication. All properties
-relating to manipulation of matrix-vector multiplication can be derrived using these 2 definitions.
-let $A$ be an $m \times n$ matrix, $\vec{v}$ and $\vec{u}$ $1 \times n$ vectos and $c$ and $d$ a scalar.
+There are some important algebraic rules to consider for matrix-vector multiplication. All properties
+relating to manipulation of matrix-vector multiplication can be derived using these 2 definitions.
+let $A$ be an $m \times n$ matrix, $\vec{v}$, $\vec{u}$ $1 \times n$ vectors and $c$, $d$ a scalar.
 \begin{gather}
   A(\vec{u} + \vec{v}) = A\vec{u} + A\vec{v}\\
   A(c\vec{u}) = c(A\vec{u})
@@ -91,12 +91,12 @@ Combining equation (1) and (2) gives the following, which is also sometimes give
   A(c\vec{u} + d\vec{v}) = c(A\vec{u}) + d(A\vec{v})
 \end{gather}
 
-It's worth noting that matrix-multiplication can alternetivly be interpreted as the dot product
+It's worth noting that vector-matrix multiplication can alternetivly be interpreted as the dot product
 between a row in the matrix and the column vector $\vec{v}$. Thinking about it this way can save time
 when computing matrix-vector products.
 
 \subsection{Notations for matrix-vector products}
-All the following forms are equavalant: 
+All the following forms are equivalant: 
 \begin{align*}
   \begin{cases}
     x + 2y + 3z =3\\
@@ -121,7 +121,7 @@ All the following forms are equavalant:
 \end{align*}
 
 \subsection{Homogenous and Non-homogenous systems}
-Is system is defined to be homogenous if $A\vec{x} = \vec{y}$ where $\vec{y} = 0$.
+A system is defined to be homogenous if $A\vec{x} = \vec{0}$.
 Conversly a system is defined to be non-homogenous if $A\vec{x} = \vec{y}$ where $\vec{y} \neq 0$.
 Homogenous systems have some interesting properties. These are as follows:
 \begin{itemize}
@@ -168,17 +168,17 @@ Some examples of homogenous and non-homogenous systems will follow:
 \end{align*}
 \\
 Note that the part depending on the free variable does not change between homogenous 
-and non-homogenous systems. Graphically this ca be interpreted as shifting the line of 
-infinite solutions away  from the origin by some vector (illustrated in figure 1). For this example that vector is 
+and non-homogenous systems. Graphically this can be interpreted as shifting the line of 
+infinite solutions away  from the origin by some vector (illustrated in figure 1 below). For this example that vector is 
 $\langle -1, 1, 0 \rangle$. Because of this general solution to a non-homogenous system can
-be written in the form  $\vec{x} = \vec{x}_p + \vec{x}_h$., where $\vec{x}_p$ is the particular
+be written in the form  $\vec{x} = \vec{x}_p + \vec{x}_h$, where $\vec{x}_p$ is the particular
 solution and $\vec{x}_h$ the homogenous solution\footnote{This looks very similar to the solution of a 
 non-homogenous differential equation (Analyse 1)}. 
 It can be proven that these are any and all solutions to the system. (maybe insert proof later idk yet)
 
 \begin{figure}[h]
   \centerline{\includegraphics[width=10cm]{images/Solution_sets.png}}
-  \caption{Comparison between the solution sets $\vec{v}_1 = 2\vec{v}_2$ and $\vec{v}_1 = 2\vec{v}_2 + \langle 0, 4 \rangle$.4
+  \caption{Comparison between the solution sets $\vec{v}_1 = 2\vec{v}_2$ and $\vec{v}_1 = 2\vec{v}_2 + \langle 0, 4 \rangle$.
   Note that the second solution set is offset from the origin by the vector $\vec{b} = \langle 0, 4 \rangle$}
 \end{figure}
 
