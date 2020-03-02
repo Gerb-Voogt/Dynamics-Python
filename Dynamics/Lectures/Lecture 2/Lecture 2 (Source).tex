@@ -9,20 +9,24 @@
 \usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
 \graphicspath{ {./images} }
 
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+
 \begin{document}
+
 
 \setcounter{section}{1}
 \section{Lecture 2 (13/02/2020)}
 
 \subsection{Dynamics of pulley mechanisms}
 Analyzing the dynamics of pulley mechanisms will raise some interesting questions.
-Say there is a pulley mechanism as shown in figure 1 below. At what velocicty would mass A
-move upwards as a result of pulling mass B downwards. Intuition tells us that these velocities
+Say there is a pulley mechanism as shown in figure 1 below. At what velocity would mass $A$
+move upwards as a result of pulling mass $B$ downwards. Intuition tells us that these velocities
 are indeed different but by what factor? Setting up just the equations of motion does not solve this problem
 since there are 2 equations with 3 variables. This is an unsolveable system. 
 The following example will discuss techniques that can be applied in analyzing the geometry of these kinds of systems
 to create an extra constraint equation to solve the system. The constraint equation represents a
-boundary under which the system can excist as described.
+boundary under which the system can exist as described.
+
 
 \subsection{Example problem involving pulleys}
 \begin{figure}[h]
@@ -30,10 +34,10 @@ boundary under which the system can excist as described.
     \caption{Free Body Diagram of the Pulley mechanism to be analyzed for the example}
 \end{figure}
 
-\begin{align}
+\begin{gather}
     \Sigma F_{ay} = 2T - m_a g = m_a \ddot{y}_a \\
     \Sigma F_{by} = T - m_b g = m_b \ddot{y}_b
-\end{align}
+\end{gather}
 \\
 Note that the problem has 3 unknown variables ($T$, $\ddot{y}_a$ and $\ddot{y}_b$).
 There are only 2 equations of motion, which would make this system of equations
@@ -56,10 +60,10 @@ sides of an equation are derrived. It is also know that the change in velocity o
 must be equal to $\ddot{y}_a$ but in opposite direction. This also holds
 for $l_5$ and $\ddot{y}_b$.
 
-\begin{gather}
+\begin{gather*}
     f(x) = g(x) \\
-    \frac{d}{dx} \Big(f(x) - g(x)\Big) = 0 \Rightarrow f'(x) = g'(x)
-\end{gather}
+    \frac{d}{dx} \left( f(x) - g(x) \right) = 0 \Rightarrow f'(x) = g'(x) \qed
+\end{gather*}
 
 From this we can conclude that:
 
@@ -68,14 +72,15 @@ From this we can conclude that:
     \ddot{l}_t = 0 \qquad \ddot{l}_1 = -\ddot{y}_a \qquad \ddot{l}_2 = 0 \qquad \ddot{l}_3 = -\ddot{y}_a \qquad \ddot{l}_4 = 0 \qquad \ddot{l}_5 = -\ddot{y}_b
 \end{gather}
 
-subsituting equation (7) into equation (6) will give the following:
+subsituting equation (5) into equation (4) will give the following:
 \begin{gather}
     0 = -\ddot{y}_a +  -\ddot{y}_a +  -\ddot{y}_b\\
     \ddot{y}_b = -2\ddot{y}_a
 \end{gather}
 
-Equation (9) is the constraint equation. This equation determins the condition under which
-the system is consistent with itself. There are now 3 variables and 3 equations making this system solveable.
+Equation (7) is the constraint equation. This equation determins the condition under which
+the system is consistent with itself. There are now 3 variables and 3 equations making the system solveable.
+
 
 \subsection{Vectors and their properties}
 Much like calculus, linear algebra proves to be a powerfull tool for solving dynamics problems.
@@ -93,21 +98,22 @@ Since this is the most common use for use of vectors in mechanics, since physica
     |\vec{a} \times \vec{b}| = |\vec{a}|\vec{b}||\sin(\theta)
 \end{gather}
 
-Also note that the accelaration vector ($\vec{a}$) has some interesting properties when considering
+Also note that the acceleration vector $\vec{a}$ has some interesting properties when considering
 circular motion. The vector can be split up is 2 components. 1 tangential to the circular motion
 which could be considered the instantaneous accelaration and 1 perpendicular to that towards the center
-of the circle. This is the apparant cetrifugal force in circular motions. More on this topic will 
+of the center of rotation. This is the apparent cetrifugal force in circular motions. More on this topic will 
 discussed in a later lecture.
 \newpage
 
+
 \subsection{State dependent accelaration}
-Consider the velocity and accelaration as described by a derrivative. Note that both
+Consider the velocity and acceleration as described by a derrivative. Note that both
 of these are time dependent. In some cases a dynamical system is described by it's current state\footnote{The state
 of any dynamical system is it's posistion and velocity, it's accelaration is not part of the state.}
 rather then by the passage of time (example: $a=kv^2$, $a = ks$, where $k$ is some random constant). It is usefull 
 for cases like this to have an equation which describes the accelaration in terms of velocity rather then time. 
 Note that a mathematician would probably shoot me for the "derrivation"\footnote{Treating infitesimals as fraction is mathematically considered
-bad practice since it can lead to nonsensical math such as $\Big(\frac{dy}{dx}\Big)^2 = \frac{(dy)^2}{(dx)^2}$. That being said the notation does allow for
+bad practice since it can lead to nonsensical math such as $\left(\frac{dy}{dx}\right)^2 = \frac{(dy)^2}{(dx)^2}$. That being said the notation does allow for
 fraction-like manipulations that are in fact correct (such as $f'(x) = \frac{df(x)}{dx} \Leftrightarrow f(x) = \int f'(x)\,dx$). The real derrivation for
 $ads = vdv$ would be far more rigoureus.} 
 I am about to give but it works for all intents of purposes.
@@ -116,15 +122,16 @@ I am about to give but it works for all intents of purposes.
     a = \frac{dv}{dt} \qquad v = \frac{ds}{dt} \\
     dt = \frac{dv}{a} \qquad dt = \frac{ds}{v} \\
     \frac{dv}{a} = \frac{ds}{v}\\
-    ads = vdv \Leftrightarrow a = v\frac{dv}{ds}
+    ads = vdv \Leftrightarrow a = v\frac{dv}{ds} \qed
 \end{gather}
 
 Note that in equation (9) $\frac{dv}{ds}$ is the derrivative of velocity with respect to displacement.
-If v is constant equation (9) can be further reduced as follows:
+If $v$ is constant equation (9) can be further reduced as follows:
 
 \begin{gather}
     \int a\,ds = \int v \, dv \\
     \int a\,ds = \frac{1}{2}v^2
 \end{gather}
+
 
 \end{document}
