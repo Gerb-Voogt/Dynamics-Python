@@ -20,14 +20,14 @@
 \section{Lecture 1: Linear systems and echelon forms (11/02/2020)}
 \subsection{Introduction}
 Linear algebra is a branch of mathematics that deals with the analysis of linear systems
-of equations. It has common applications in many branches of both physical sciences (Quantum mechanics, relativistic mechanics) as well
+of equations, vectors and matrices. It has common applications in many branches of both physical sciences (Quantum mechanics, relativistic mechanics) as well
 as computer science (graphics proccesing, machine learning) and economics.\\
 \\
 In general linear equations take the following form:
 \begin{equation}
     a_1x_1 + a_2x_2 + \cdots + a_nx_n = b
 \end{equation}
-or in sigma notation:
+Which can be written more compactly as:
 \begin{equation}
     \sum_{i=1}^{n} a_ix_i = b
 \end{equation}
@@ -77,14 +77,14 @@ Rule 1 however is best demonstrated with an example.
        0 & 1 & -4 \\
     \end{bmatrix}      
 \end{align*}
-Note that the first equation was multiplied by -2 and subsequently added to equation 2.
+Note that the first equation was multiplied by -2 and subsequently added to the second equation.
 The second row now has the form of $x_2 = -4$. The answer for $x_1$ can now be determined via
 backsubsitution. This gives the following solution: $(x_1, x_2) = (10, -4)$
 
 \subsection{Consistency of systems}
 A system of equations can either be consistent, meaning the system has atleast 1 solution, or 
-inconsistent, meaning no solution for the system excists. A system can be found 
-inconsistent if Gaussian elimination gives a row in the following form:
+inconsistent, meaning no solution for the system exists. A system can be found 
+inconsistent if Gaussian elimination gives a row of the following form:
 \begin{align*}
     \begin{bmatrix}[ccc|c]
         0 & 0 & 0 & c\\
@@ -92,7 +92,7 @@ inconsistent if Gaussian elimination gives a row in the following form:
     \;, c \neq 0
 \end{align*}
 As common sense tells us this is impossible since all 0 coefficients can never produce
-a result that is not equal to zero. The following form can also arise:
+a result that is non-zero. The following form can also arise:
 \begin{align*}
     \begin{bmatrix}[ccc|c]
         0 & 0 & 0 & 0\\
@@ -100,7 +100,7 @@ a result that is not equal to zero. The following form can also arise:
 \end{align*}
 This system is not inconsistent since all 0 coefficients should always produce 0. This form arises from 
 gaussian elemination when the system has a redundant equation, which is to say, an equation that does not
-add any extra information. An example of this is two rows with the same equation written differently.\\
+tell us more about the system. An example of this is two rows with the same equation written differently.\\
 \\
 Consistent systems are typically solved by row reduction and solving for all unknown variables if there is a unique
 solution. When the system does not have a unique solution, but instead infinitly many the system is solved by expressing
