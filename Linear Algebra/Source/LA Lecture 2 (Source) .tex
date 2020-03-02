@@ -21,7 +21,7 @@
 \section{Lecture 2: Spans and vector equations (14/02/2020)}
 
 \subsection{vectors in $\mathbb{R}^n$ space}
-Any vector in $\mathbb{R}^n$ space is usually denoted with the following form:
+Any vector in $\mathbb{R}^n$ space is denoted with the following form:
 
 \begin{align*}
     \vec{v} =
@@ -41,8 +41,8 @@ The important algebraic properties of any vector in $\mathbb{R}^n$ space will be
     c(d\vec{u}) = cd\vec{u}
 \end{gather}
 It is also worth knowing that a vector can be divided by it's own magnitude in which case all of
-it's components become smaller then 1. This proces is called normalizing and creates a vector of size 1
-which effectivly only the direction of said vector.
+it's components become smaller then 1. This proces is called normalization and creates a vector of size 1
+which only represents the direction of said vector.
 
 \begin{align*}
     \hat{u} = \frac{\vec{u}}{|\vec{u}|}
@@ -56,7 +56,7 @@ Vector equations are a different way of representing a given linear system. they
 \end{gather*}
 $\vec{y}$ is refered to as the linear combination of $\vec{v}_1 \cdots \vec{v}_n$. The $c_i$ terms are referred
 to as the weight.\\
-The vector equation for $\vec{y}$ can also be representad as a $1\times n$ matrix as follows:
+The vector equation for $\vec{y}$ can also be represented as a $1\times n$ matrix as follows:
 \begin{align*}
     \begin{bmatrix}[cccc|c]
         \vec{v}_1 & \vec{v}_2 & \cdots & \vec{v_n} & \vec{y}\\
@@ -100,7 +100,7 @@ Which can be rewritten as:
     \end{pmatrix}
 \end{align*}
 The advantage of vector equations is that they are easily graphically interpretable in 2 or 3 dimensional space.
-They also can give information on the possible solution of a given system of equation. When lines
+They can also give information on the possible solution of a given system of equation. When lines
 are parrallel they have no solution. When lines cross in a singular point the system has a unique solution.
 
 \subsection{Vector spans}
@@ -113,7 +113,7 @@ The set of all linear combinations is denoted by:
     \end{Bmatrix}
 \end{align*}
 The span is the subset of all vectors that can be written as $\sum_{i=1}^{n} c_i\vec{v}_i$. This means the span
-is just the collection of any given point in an  $\mathbb{R}^n$.that can be reached with the given vectors.
+is just the collection of any given point in an  $\mathbb{R}^n$ space. that can be reached with the given vectors.
 
 \begin{align*}
     \text{Span} 
@@ -152,7 +152,7 @@ When instead the following vectors where given:
         1\\
     \end{pmatrix}
 \end{align*}
-The span would be all possible points on a 2 dimensional play, or represented as a vector:
+The span would be all possible points on a 2 dimensional plane, or represented as a vector:
 \begin{align*}
     \begin{pmatrix}
         a\\
@@ -160,7 +160,8 @@ The span would be all possible points on a 2 dimensional play, or represented as
     \end{pmatrix}
     \, , \; a, b \in \mathbb{R}
 \end{align*}
-The span of a vector can either be an entire plane, a line or a single point in any $\mathbb{R}^n$ space.
+The span of a vector can either be an entire plane, a line or a single point in any $\mathbb{R}^n$ space\footnote{
+    Or something more abstract when considering a vector space with more then 3 dimensions since this cannot graphically interpreted.}.
 To reach any given point in $\mathbb{R}^n$ space atleast $n$ vectors are required.
 
 
