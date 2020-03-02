@@ -4,11 +4,14 @@
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{siunitx}
 \usepackage{subfig}
 
 \usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
 \graphicspath{ {./images} }
+
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
 
 \begin{document}
 
@@ -26,14 +29,14 @@ motion along a curve. This concept will be covered with an example below.\\
 \end{figure}
 
 Recall the example from lecture 1 with a cup on a table. The coordiante system for that problem was solved using 
-the u- and v-axis which where offset from the x- and y-axis respectivly by an angle of $\theta$. The solution below
-will solve the problem using the x- and y-axis.
+the $u$- and $v$-axis which where offset from the $x$- and $y$-axis respectivly by an angle of $\theta$. The solution below
+will solve the problem using the $x$- and $y$-axis.
 
 \begin{gather}
     \Sigma F_x = N \cdot \sin(\theta) = m\ddot{x} \\
     \Sigma F_y = N \cdot \cos(\theta) - mg = m\ddot{y}
 \end{gather}
-There are now 3 variables in 2 equation making this system currently unsolvable. There needs to be another equation.
+There are now 3 variables and 2 equations making this system currently unsolvable. There needs to be another equation.
 This equation based on some geometrical properties of the surface which can be seen in figure 2. 
 Since the cup is moving along the surface we know the following:
 
@@ -50,8 +53,8 @@ Equation (3) being the constraint equation for this system introduces the 3rd an
 solving this system.
 
 \subsection{n,t-coordinates}
-n,t-coordinates refers to normal,tangential coordinates. This is a coordinate system commonly used for describing
-motion along curved surfaces. It's important to note that this is in fact an inertial frame of reference. The
+n,t-coordinates refers to normal, tangential coordinates. This is a coordinate system commonly used for describing
+motion along curved surfaces and paths. It's important to note that this is in fact an inertial frame of reference. The
 total displacement is always going to be 0 because of this since the coordinates move along with the object that
 is being described.
 \begin{figure}[h]
@@ -66,7 +69,7 @@ Equation (4) describes the actual velocity of the object along the surface. Only
 force contributes to changes in velocity, and only the tangential component of the velocity vector describes
 the velocity along the surface. It's worth knowing that this is all still expressed in a cartesian coordinate system.
 the velocity vector $\vec{v}$ can also be described as $\vec{v} = v_x\boldsymbol{\hat{i}} + v_y\boldsymbol{\hat{j}}$.
-By extension this means that the unit vector $\boldsymbol{\hat{u}_t}$ and $\boldsymbol{\hat{u}_n}$ are also vectors expressed in cartesian coordinates.
+By extension this means that the unit vectors $\boldsymbol{\hat{u}_t}$ and $\boldsymbol{\hat{u}_n}$ are also vectors expressed in cartesian coordinates.
 
 \subsection{derrivation for motion along a curved path}
 The acceleration vector $\vec{a}$ is considered a type of constraint equation for the movement, 
@@ -79,7 +82,7 @@ since the object has to move along the curved path. Applying the product rule gi
 
 Consider the following: a point mass moves an infetesimal distance $ds$\footnote{Since all values for the differential element are very small
 $ds$ is approximated to do be straight eventhough it is technically curved very slightly.} along a curved path.
-This means the angle $\phi$ increases with $d\phi$. The radius of curvature will be $\rho$.
+This means the angle $\phi$ increases with $d\phi$. The radius of curvature will be $\rho$. Figure 4 shows the geometrical relation.
 \begin{figure}[h]
     \centerline{\includegraphics[width=3.5cm]{images/Differential_element.png}}
     \caption{A differential element of an object moving along a curved path}
@@ -90,7 +93,7 @@ which is to say, way less then 1 a first order Taylor expansion can be used to a
 \begin{gather}
     T(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x-a)^n \quad\text{for}\quad f(x) = \sin(x) \quad \text{at a=0}\\
     T_1(x) = 0 + \frac{\cos(0)}{1} (x-0) = x\\
-    \text{Thus : } \sin(x) \approx x
+    \sin(x) \approx x \qed
 \end{gather}
 
 Because of this property we can determine the following:
@@ -150,7 +153,7 @@ Using this information:
 In 3D the n,t-coordinates gain an extra component. This component is perpendicular to both the 
 normal and tangential vector, and is reffered to as the bionomial vector. The following example
 deals with a problem in 3D which is reduced to two 2-dimensional problems to solve. 3-dimensional
-dynamics is outside the scope of the course and will be covered in advanced Dynamics in year 2 quarter 1.\\
+dynamics is outside the scope of the course\footnote{WB1135, TU Delft} and will be covered in advanced Dynamics in year 2 quarter 1.\\
 \\
 \begin{figure}[h]
     \centering
@@ -160,10 +163,10 @@ dynamics is outside the scope of the course and will be covered in advanced Dyna
     \caption{The problem reduced to two 2-dimensional, easier to solve situations}
 \end{figure}
 
-Looking at the 2D simplifaction of the problem from above shows a very typical circular motion.
+Looking at the 2D simplification of the problem from above shows a very typical circular motion.
 The distance $\rho$ is the distance to the circle around which the mass rotates, and perpendicular 
-to that the tangential component pointing in the direction of rotation. Figure [x] Shows the Free body diagram of the problem when
-observed from the front. From here it is possible to determin the equation of motion.
+to that the tangential component pointing in the direction of rotation. Figure 7 Shows the Free body diagram of the problem when
+observed from the front in (b) and the top in (a). From here it is possible to determine the equations of motion.
 
 \begin{gather}
     \Sigma F_x = -\sin(\theta)\cdot T = m\ddot{x}\\
@@ -174,7 +177,7 @@ After this it's a fairly typical solution solving for the value of T.
 
 \subsection{Example with unknown radius of curvature}
 In some case a problem presents a curved surface, where the radius of curvature 
-$\rho$ is not know. Since the surface is often curved as some function of $x$ the
+$\rho$ is not known or not constant. Since the surface is often curved as some function of $x$ the
 radius of curvature can also be computed as a function of $x$. This can be done with
 the following equation:
 
