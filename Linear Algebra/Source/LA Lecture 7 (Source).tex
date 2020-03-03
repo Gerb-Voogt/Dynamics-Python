@@ -1,0 +1,211 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amssymb}
+\usepackage{subfig}
+
+\graphicspath{ {./images} }
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+
+\begin{document}
+\setcounter{section}{6}
+\section{Lecture 7: Transposed matrices and inverted matrices (03/03/2020)}
+\subsection{Transposed matrices}
+A transpose is a type of matrix operation where the rows and columns of a matrix are interchanged.
+This takes the following form for a $2 \times 2$ matrix, but can be extenden to any $m \times n$ matrix.
+
+\begin{align*}
+  A = 
+  \begin{bmatrix}
+    a_{11} & a_{12}\\
+    a_{21} & a_{22}\\
+  \end{bmatrix}
+  \quad \text{Then} \quad 
+  A^T = 
+  \begin{bmatrix}
+    a_{11} & a_{21}\\
+    a_{12} & a_{22}\\
+  \end{bmatrix}
+\end{align*}
+
+Some algebraic rules for matrix transposition are:
+\begin{gather}
+  (A^T)^T = A\\
+  (A + B)^T = A^T + B^T\\
+  (rA)^T = rA^T\\
+  (AB)^T = B^TA^T
+\end{gather}
+
+Quick proof for equation (1):
+\begin{gather*}
+  (A^T)^T = 
+  \begin{bmatrix}
+    a_{11} & a_{21}\\
+    a_{12} & a_{22}\\
+  \end{bmatrix} ^T
+  =
+  \begin{bmatrix}
+    a_{11} & a_{12}\\
+    a_{21} & a_{22}\\
+  \end{bmatrix}
+  = A \qed
+\end{gather*}
+It's worth noting that equation (4) may not intuitivly make sensen based on regular algebraic rules, however
+when we consider that the columns in $B$ must be equal to the rows in $A$ for matrix multiplication to make sense\
+it's easy to see that the order $B$ and then $A$ makes sense. 
+if $A$,$B$ are $m \times n$ and $n \times m$ matrices respectivly, the transposed matrices $A^T$ and $B^T$ must be of the form $n \times m$ and $p \times n$.
+
+\subsection{Inverse matrices}
+\underline{Theorem:}
+if $A$ is an invertible $m \times n$ matrix, then for each $\vec{b}$ in $\mathbb{R}^n$ the equation
+$A\vec{x}=\vec{b}$ has the unique solution $\vec{x} = A^{-1}\vec{b}$.
+
+\begin{figure}[h]
+  \centering
+  \subfloat[$A^{-1}$ doesn't exist]{{\includegraphics[width=50mm]{images/placeholder.png}}}%
+  \qquad
+  \subfloat[$A^{-1}$ does exist]{{\includegraphics[width=50mm]{images/placeholder.png}}}%
+  \caption{Representation of the existence of an inverse matrix in 2-dimensional space}
+\end{figure}
+Note figure 1 (a). There is no single unique vector $\vec{v}$ that will project to the x-axis under the
+given matrix transformation, rather there is an entire line of vectors which will give the same solution,
+making the solution non-unique and by extension the matrix non-invertable. Figure 1 (b) represents a rotation
+of space by $\frac{\pi}{2}\rad$. The transfomation of vector will always be unique, making the matrix invertible.\\
+\\
+Some rules to consider for inverting matrices:
+\begin{gather}
+  (A^{-1})^{-1} = A\\
+  (AB)^{-1} = B^{-1}A^{-1}\\
+  (A^T)^{-1} = (A^{-1})^T
+\end{gather}
+
+Proof for equation (6) and (7):
+\begin{gather*}
+  (AB)^{-1} \cdot AB = I_n\\
+  B^{-1}A^{-1} \cdot AB = B^{-1}I_nB = B^{-1}B = I_n \qed\\
+  \\
+  (A^T)^{-1} A^T = I_n\\
+  (A^{-1})A^T = (AA^{-1})^T = I_n^T = I_n \qed
+\end{gather*}
+
+\underline{Theorem:}
+A matrix $A: n \times n$ is invertible if and only if $A$ is row equivelant to $I_n$.\\
+
+This means the matrix $A$ should have exactly $n$ pivots since there can be no free variables in
+an invertable matrix.
+
+\subsection{Special case of a $2 \times 2$ matrix}
+Computing the inverse matrix of any given $2 \times 2$ matrix is much faster then a larger
+$n \times n$ matrix due to a computational shortcut. This looks like the following:
+
+\begin{gather*}
+  \text{let}\:A=
+  \begin{bmatrix}
+    a & b\\
+    c & d\\
+  \end{bmatrix}\\
+  |A| = 
+  \begin{vmatrix}
+    a & b\\
+    c & d\\
+  \end{vmatrix}
+  = ad - cb\\
+  \text{Matrix is invertible, thus:}\\
+  ad - cb \neq 0\\
+  A^{-1} = \frac{1}{ad-cb}
+  \begin{bmatrix}
+    d & -b\\
+    -c & a\\
+  \end{bmatrix}\\
+  A^{-1}A = \frac{1}{ad-cb}
+  \begin{bmatrix}
+    d & -b\\
+    -c & a\\
+  \end{bmatrix}
+  \begin{bmatrix}
+    a & b\\
+    c & d\\
+  \end{bmatrix}
+  =
+  \frac{1}{ad-cb}
+  \begin{bmatrix}
+    ad-bc & 0\\
+    0 & ad-bc\\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    1 & 0\\
+    0 & 1\\
+  \end{bmatrix} = I_2 \qed
+\end{gather*}
+
+
+\subsection{Example algebraic manipultion of matrices}
+let $A,B,C$ be invertible $n\times n$ matrices.\\
+Does the $C^{-1}(A+x)B^{-1}=I_n$ have a solution?
+
+\begin{gather*}
+  CC^{-1}(A+x)B^{-1}B=CI_nB\\
+  I_n(A+x)I_n=CB\\
+  A+x = CB\\
+  x = CB-A
+\end{gather*}
+Note that the order of multiplication is important since $AB \neq BA$.\\
+\\
+Compute the inverted matrix $A^{-1}$
+\begin{gather*}
+  A =
+  \begin{bmatrix}
+    1 & 2\\
+    3 & 4\\
+  \end{bmatrix}
+  \qquad A^{-1} =
+  \begin{bmatrix}
+    a & b\\
+    c & d\\
+  \end{bmatrix}\\
+  AA^{-1} =
+  \begin{bmatrix}
+    1 & 2\\
+    3 & 4\\
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+    a & b\\
+    c& d\\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+     1 & 0\\
+     0 & 1\\
+  \end{bmatrix}\\
+  \text{To prevent having to do Gaussian elemination twice:}\\
+  \begin{bmatrix}[cc|cc]
+    1 & 2 & 1 & 0\\
+    3 & 4 & 0 & 1\\
+  \end{bmatrix}
+  \sim
+  \begin{bmatrix}[cc|cc]
+    1 & 0 & -2 & 1\\
+    0 & 1 & \frac{3}{2} & -\frac{1}{2}\\
+  \end{bmatrix}
+\end{gather*}
+
+Note that this is of the form: $\begin{bmatrix}[c|c]A & I_n\\ \end{bmatrix} \sim \begin{bmatrix}[c|c]I_n & A^{^-1}\\ \end{bmatrix}$
+
+
+
+\end{document}
