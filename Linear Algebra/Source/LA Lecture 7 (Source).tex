@@ -75,9 +75,9 @@ $A\vec{x}=\vec{b}$ has the unique solution $\vec{x} = A^{-1}\vec{b}$.
 
 \begin{figure}[h]
   \centering
-  \subfloat[$A^{-1}$ doesn't exist]{{\includegraphics[width=50mm]{images/placeholder.png}}}%
-  \qquad
-  \subfloat[$A^{-1}$ does exist]{{\includegraphics[width=50mm]{images/placeholder.png}}}%
+  \subfloat[$A^{-1}$ doesn't exist]{{\includegraphics[width=50mm]{images/No_inverse_matrix.png}}}%
+  \qquad \;
+  \subfloat[$A^{-1}$ does exist]{{\includegraphics[width=50mm]{images/Inverse_matrix.png}}}%
   \caption{Representation of the existence of an inverse matrix in 2-dimensional space}
 \end{figure}
 Note figure 1 (a). There is no single unique vector $\vec{v}$ that will project to the x-axis under the
@@ -192,7 +192,7 @@ Compute the inverted matrix $A^{-1}$
      1 & 0\\
      0 & 1\\
   \end{bmatrix}\\
-  \text{To prevent having to do Gaussian elemination twice:}\\
+  \text{To prevent having to do Gaussian elemination twice the augmented matrix can be extended:}\\
   \begin{bmatrix}[cc|cc]
     1 & 2 & 1 & 0\\
     3 & 4 & 0 & 1\\
@@ -202,10 +202,9 @@ Compute the inverted matrix $A^{-1}$
     1 & 0 & -2 & 1\\
     0 & 1 & \frac{3}{2} & -\frac{1}{2}\\
   \end{bmatrix}
+  \Leftrightarrow \
+  \begin{bmatrix}[c|c]A & I_n\\ \end{bmatrix} 
+  \sim 
+  \begin{bmatrix}[c|c]I_n & A^{^-1}\\ \end{bmatrix}
 \end{gather*}
-
-Note that this is of the form: $\begin{bmatrix}[c|c]A & I_n\\ \end{bmatrix} \sim \begin{bmatrix}[c|c]I_n & A^{^-1}\\ \end{bmatrix}$
-
-
-
 \end{document}
