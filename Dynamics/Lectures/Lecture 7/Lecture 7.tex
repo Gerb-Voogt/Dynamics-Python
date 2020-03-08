@@ -43,12 +43,12 @@ like the following:
 The integral $J = \int_t F\,dt$ is refered to as impulse (stoot in het Nederlands).
 
 \subsection{Quick numerical example}
-let $v_0 = 3\,m/s$, $F = 6t\,N$, $m =\,kg$. Determine the momentum at $t=0s\,s$ and $t=2\,s$. Determine the velocity at $t=2\,s$.
+let $v_0 = 3\,m/s$, $F = 6t\,N$, $m =4\,kg$. Determine the momentum at $t=0s\,s$ and $t=2\,s$. Determine the velocity at $t=2\,s$.
 \begin{gather*}
   \int_0^2 6t\,dt = \frac{1}{2} \cdot 6 t^2\Big|_{0}^{2} = 12\,Ns - 0\,Ns = 12\,Ns\\
   12\,Ns = mv_2 - (4\,kg\cdot 3\,m/s)\\
   v_2 = \frac{24\,Ns}{4\,kg} = 6\,m/s\\
-  \text{Thus: } p(0\,s) = 12\,Ns \quad  p(2\,s) = 24\,Ns \quad  v(2\,s) = 12\,m/s
+  \text{Thus: } p(0\,s) = 12\,Ns \quad  p(2\,s) = 24\,Ns \quad  v(2\,s) = 6\,m/s
 \end{gather*}
 
 
@@ -74,7 +74,7 @@ The total momentum of a closed system is constant. This concept is refered to as
 This only holds if there are no external forces acting on the system, since the system must be closed.
 
 \begin{figure}[h]
-  \centerline{\includegraphics[width=40mm]{images/placeholder.png}}
+  \centerline{\includegraphics[width=40mm]{images/system.png}}
   \caption{The closed system of 2 colliding particles}
 \end{figure}
 
@@ -86,9 +86,9 @@ This only holds if there are no external forces acting on the system, since the 
 
 \begin{figure}[h]
   \centering
-  \subfloat[Situations]{{\includegraphics[width=50mm]{images/placeholder.png}}}%
+  \subfloat[Situations]{{\includegraphics[width=50mm]{images/Situations.png}}}%
   \qquad
-  \subfloat[Graph]{{\includegraphics[width=50mm]{images/placeholder.png}}}%
+  \subfloat[Graph]{{\includegraphics[width=50mm]{images/Graph.png}}}%
   \caption{The internal force $F_i$ over a time $\Delta t$. Note that $F_i >> F_{ext}$}
 \end{figure}
 Looking at figure 2 (b) would imply that the internal forces in the system are greater then $0$. However
@@ -118,9 +118,9 @@ along and perpendicular tot the impact direction (remember $n,t$-coordinates?).
 An example of this can be found in figure 3 (a) and (b) below.
 \begin{figure}[h]
   \centering
-  \subfloat[Normal]{{\includegraphics[width=50mm]{images/placeholder.png}}}%
+  \subfloat[Normal]{{\includegraphics[width=50mm]{images/collision_normal.png}}}%
   \qquad
-  \subfloat[Rotated]{{\includegraphics[width=50mm]{images/placeholder.png}}}%
+  \subfloat[Rotated]{{\includegraphics[width=50mm]{images/collision_rotated.png}}}%
   \caption{Solving a collision problem through rotation untill the tangential and normal components appear.}
 \end{figure}
 
