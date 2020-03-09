@@ -8,5 +8,8 @@ repo contains the following:
 Repo might contain the following in the future:
   - WOP3A Lecture Notes for relevant exam lectures
  
- 
+
+Linear ALgebra lecture 8 and 15 have no lecture notes because these lectures are dedicated to
+acedemic reason. I might instead make a single file relating to different methods of proof and 
+examples if I think it's worthwhile.
 Feel free to clone the repo or make a pull request regarding open issues.
