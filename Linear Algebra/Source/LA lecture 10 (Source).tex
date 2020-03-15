@@ -1,0 +1,102 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amssymb}
+
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\setcounter{section}{9}
+
+\section{Lecture 10: Coordinates and Dimensions}
+\subsection{Bases}
+Let $H$ be a subspace. Every point in $H$ can be written as a linear combination of vectors in the set $\mathcal{B} = \{\vec{b}_1, \cdots, \vec{b}_p \}$. Since $\mathcal{B}$ is a basis we know it is linearly independent.\\
+\\
+
+Suppose $\vec{x}$ can be written in 2 ways.
+\begin{equation}
+    \vec{x} = c_1\vec{b}_1 + \cdots + c_p\vec{b}_p \quad \text{or} \quad     \vec{x} = d_1\vec{b}_1 + \cdots + d_p\vec{b}_p
+\end{equation}
+then:
+\begin{equation}
+    \vec{0} = \vec{x} - \vec{x} = (c_1 - d_1)\vec{b}_1 + \cdots + (c_p - d_p)\vec{x}
+\end{equation}
+Since $\mathcal{B}$ is linearly independent we know that all the weights in equation (2) must be zero., thus: $c_j = d_j$ for $1 \leq j \leq p$, This means that the 2 ways of writing the linear combination for $\vec{x}$ in equation (1) must in fact be the same.\\
+\\
+$\mathcal{B} = \{ \vec{b}_1, \cdots, \vec{b}_p \}$ is a basis for the subspace $H$. For each $\vec{x}$ in $H$ the coordinates of $\vec{x}$ relative to the basis $\mathcal{B}$ are the weights $c_1, \cdots, c_p$ such that $\vec{x} = c_1\vec{b}_1 + \cdots + c_p\vec{b}_p$. The vector:
+\begin{equation}
+    \left[ \vec{x} \right]_{\mathcal{B}} = \begin{bmatrix} c_1 \\ \vdots \\ c_p\\ \end{bmatrix} \quad \text{Where} \quad \left[ \vec{x} \right]_{\mathcal{B}} \in \R^p
+\end{equation}
+is called the coordinate vector of $\vec{x}$, relative to $\mathcal{B}$ or the $\mathcal{B}$-coordinate vector of $\vec{x}$.
+
+\subsection{example problem bases}
+\begin{gather*}
+    \text{let: } \vec{v}_1 = \begin{bmatrix} 3\\ 6\\ 2\\ \end{bmatrix},
+                 \vec{v}_2 = \begin{bmatrix} -1\\ 0\\ 1\\ \end{bmatrix},
+                 \vec{x} = \begin{bmatrix} 3\\ 12\\ 7\\ \end{bmatrix},
+                 \mathcal{B} = \{ \vec{v}_1, \vec{v}_2 \}\\
+    \text{Determine if $\vec{x}$ is in $H$, if it is determine $\left[ \vec{x} \right]_{\mathcal{B}}$.}\\
+    c_1 \begin{bmatrix} 3\\ 6\\ 2\\ \end{bmatrix} + c_2 \begin{bmatrix} -1\\ 0\\ 1\\ \end{bmatrix} = \begin{bmatrix} 3\\ 12\\ 7\\ \end{bmatrix} \quad \text{must be consistent}\\
+    \begin{bmatrix}[cc|c]
+        3 & -1 & 3\\
+        6 & 0 & 12\\
+        2 & 1 & 7\\
+    \end{bmatrix}
+        \sim
+    \begin{bmatrix}[cc|c]
+        1 & 0 & 2\\
+        0 & 1 & 3\\
+        0 & 0 & 0\\
+    \end{bmatrix}\\
+    (c_1, c_2) = (2,3) \quad \text{and} \quad \left[ \vec{x} \right]_{\mathcal{B}} = 
+    \begin{bmatrix} 
+        2\\
+        3\\
+    \end{bmatrix}
+\end{gather*}
+It's important to note that $\left[ \vec{x} \right]_{\mathcal{B}} \in \R^2$ but outputs vectors in an $\R^3$ space. It can be thought of as a 2 dimensional plane oriented in a 3 dimensional space. The correspondance $\vec{x} \mapsto \left[ \vec{x} \right]_{\mathcal{B}}$ is a one-to-one correspondance between the subspace $H$ and $\R^2$ that preserves linear combinations. This is what is referred to as isomorphism. In general if $\mathcal{B} = \{\vec{b}_1, \cdots, \vec{b}_p \}$ is a basis for $H$ then the mapping $\vec{x} \mapsto \left[ \vec{x} \right]_{\mathcal{B}}$ makes $H$ look and act like an $\R^P$ space eventhough vectors in $H$ may have more than $p$ entries.
+
+\subsection{Dimensions of a subspace}
+In Linear algebra the concept is a bit different. A dimension is defined as the amount of vectors contained in the basis of a space. This means $\R^2$ contains 2 basis vectors, $\R^3$ contains 3 basis vectors, and so on. The rank of a matrix denoted by $\text{Rank}\, A$ is the dimension of the column space of $A$. Since the pivot columns of $A$ form the basis for $\text{Col}\, A$ the rank of a matrix $A$ is nothing other then the number of pivot columns in $A$.
+
+\begin{theorem}
+    The dimension of a nonzero subspace $H$, denoted by  $\text{Dim}\, H$, is the number of vectors in the basis of $H$. The dimension of the null space $\{ \vec{0} \}$ is defined to be 0, since the set $\{ \vec{0} \}$ is defined to be a linearly dependent set.
+\end{theorem}
+
+\begin{theorem}
+    if a matrix $A$ has $n$ columns, then: $\text{rank}\, A + \text{dim}\,\text{Nul}\,A = n$.
+\end{theorem}
+
+\begin{theorem}
+    Let $H$ be a $p$-dimensional subspace of $\R^n$ any linearly independent set of exactly $p$ elements in $H$ is automatically a basis for $H$. Also, any set of $p$ elements of $H$ that spans $H$ is automatically a basis for $H$.
+\end{theorem}
+
+\begin{theorem}
+    if $A$ is an $n \times n$ matrix, then all the following statements imply that $A$ is an invertible matrix:
+    \begin{itemize}
+        \item The columns of $A$ form the basis of $\R^n$
+        \item $\text{Col}\, A = \R^n$
+        \item $\text{dim}\,\text{Col}\, A = \R^n$
+        \item $\text{rank}\, A = n$
+        \item $\text{Nul}\, A = \{ \vec{0} \}$
+        \item $\text{dim}\,\text{Nul}\, A = 0$
+    \end{itemize}
+\end{theorem}
+
+\end{document}
