@@ -1,0 +1,132 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\setcounter{section}{10}
+\section{Lecture 11: Inner product and orthogonality (17/03/2020)}
+\subsection{The inner product}
+let $\vec{u}, \vec{v} \in \R^n$, where:
+\begin{equation*}
+  \vec{u} = \begin{bmatrix} u_1 \\ \vdots \\ u_n \\\end{bmatrix},\;
+    \vec{v} = \begin{bmatrix} v_1 \\ \vdots \\ v_n \\\end{bmatrix},
+\end{equation*}
+The matrix-vector product $\vec{u}^T\vec{v}$ outputs a $1 \times 1$ matrix, which
+is just a single number (or scalar in Linear algebra terms). This operation between to column vectors is referred to as the dot-poduct or inner-product, and is usually denoted as follows:
+\begin{equation}
+  \vec{u} \cdot \vec{v} = u_1v_1 + \cdots + u_nv_n = \sum_{i=1}^n u_iv_i
+\end{equation}
+The algebraic rules for the dot product are:
+\begin{gather}
+  \vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u}\\
+  (\vec{u} + \vec{v}) \cdot \vec{w} = \vec{u} \cdot \vec{w} + \vec{v} \cdot \vec{w}\\
+  (c\vec{u}) \cdot \vec{v} = c(\vec{u} \cdot \vec{v}) = \vec{u} \cdot (c\vec{u})\\
+  \vec{u} \cdot \vec{u} \geq 0, \, \text{Where } \vec{u} \cdot \vec{u} = 0 \; \text{iff }\, \vec{u} = 0
+\end{gather}
+The length of any vector in $\R^n$ space is defined as:
+\begin{gather}
+  ||\vec{v}|| = \sqrt{\vec{v} \cdot \vec{v}} = \sqrt{\sum_{i=1}^n v_i^2}\\
+  ||\vec{v}||^2 = \vec{v} \cdot \vec{v}
+\end{gather}
+Notice that the lenght of a vector has linear properties just like the vector itself:
+\begin{equation}
+  ||c\vec{v}|| = |c|\,||\vec{v}||
+\end{equation}
+
+\subsection{normalizing a vector}
+Normalizing a vector will output a vecotr referred to as a unit vector. This vector (denoted with a hat rather then a regular vector arrow) has a length of 1 and represents nothing but the direction of the original vector.
+\begin{equation}
+  \hat{u} = \frac{\vec{u}}{||\vec{u}||}
+\end{equation}
+
+\subsection{Distance between points in $\R^n$}
+The distance between points in any $\R^n$ space is defined as follows:
+let $\vec{u}, \vec{v} \in \R^n$. The distance between $\vec{u}$ and $\vec{v}$, denoted as: $\text{dist}\,(\vec{u}, \vec{v})$ is the length of the vector $\vec{u} - \vec{v}$.
+\begin{align}
+  \text{dist}\,(\vec{u}, \vec{v}) &= ||\vec{u} - \vec{v}||\\
+                                  &= \sqrt{\sum_{j=1}^n(\sum_{i=1}^n(u_i-v_i)_j)^2}
+\end{align}
+
+\subsection{orthogonal vectors}
+The vectors $\vec{u}$ and $\vec{v}$ (in any $\R^n$ space) are perpendicular (or orthogonal in more then 2 dimensional space) iff $||\vec{u} - \vec{v}|| = ||\vec{u} - (-\vec{v})||$.
+\begin{figure}[h]
+  \centerline{\includegraphics[width=40mm]{images/Perp_vects.png}}  
+  \caption{Representation of 2 perpendicular vectors $\vec{u}$ and $\vec{v}$ in 2D space.}
+\end{figure}
+\begin{align}
+  (\text{dist }(\vec{u}, -\vec{v})^2) &= ||\vec{u} + \vec{v}||^2\\
+                                      &= ||\vec{u}||^2 + ||\vec{v}||^2 + 2\vec{u}\cdot \vec{v}
+\end{align}
+\begin{align}
+  (\text{dist }(\vec{u}, \vec{v})^2) &= ||\vec{u} - \vec{v}||^2\\
+                                    &= ||\vec{u}||^2 + ||\vec{v}||^2 - 2\vec{u}\cdot \vec{v}
+\end{align}
+These distances are equal iff $2\vec{u}\cdot \vec{v} = -2\vec{u} \cdot \vec{v}$. The only case where this can happen is if $2\vec{u}\cdot \vec{v} = 0$, thus: 2 vectors in any $\R^n$ space are orthogonal iff $\vec{u} \cdot \vec{v} = 0$\footnote{$\vec{0}^T\vec{v}=0,\, \vec{u}^T\vec{0}=0$ thus every vector is considered to be orthogonal with the zero vector.}.
+
+\subsection{Orthogonal complements}
+let $W$ be a subspace in $\R^n$. If a vector $\vec{z}$ is orthagonal to every vector in $W$, then $\vec{z}$ is referred to as the orthogonal compliment to $W$, and denoted as $W^\bot$.
+Notes:
+\begin{enumerate}
+  \item $\vec{x} \in W^\bot$ iff $\vec{x}$ is orthogonal to every single vector in $W$.
+  \item $W^\bot$ is a subspace of $\R^n$.
+\end{enumerate}
+\begin{theorem}
+  let $A$ be an $m \times n$ matrix. The orthogonal complement of the row space of $A$ os the null space of $A$ and the orthagonal complement of the column space of $A$ is the null space of $A^T$.
+  \begin{gather}
+    (\text{Row } A)^\bot = \text{Nul } A\\
+    (\text{Col } A)^\bot = \text{Nul } A^T
+  \end{gather}
+\end{theorem}
+
+\subsection{Orthogonal and orthonormal sets}
+A set of vectors $\{\vec{u}_1, \cdots, \vec{u}_p \} \in \R^n$ is said to be orthagonal if $\vec{u}_i \cdot \vec{v}_j = 0$ whenever $i \neq j$. An orthogonal basis is a basis to a subspace that is also an orthogonal set.
+
+\begin{theorem}
+  Let $\{\vec{u}_1, \cdots, \vec{u}_p \}$ be an orthagonal basis to the subsapce $W$ of $\R^n$. For each $\vec{y}$ in $W$ the weights in the linear combination:
+  \begin{equation}
+    \vec{y} = \sum_{i=1}^p c_i\vec{u}_i
+  \end{equation}
+  are given by:
+  \begin{equation}
+    c_j = \frac{\vec{y}\cdot \vec{u}_j}{\vec{u}_j \cdot \vec{u}_j} \qquad (j = 1, \cdots, p)
+  \end{equation}
+\end{theorem}
+
+A set of vectors $\{\ \vec{u}_1, \cdots, \vec{u}_p \}$ is orthonormal if it's an orthagonal set of unit vectors. The easiest example of this is the set of unit vectors describing $\R^n$ cartesian space:
+\begin{equation}
+  \{ \boldsymbol{\hat{e}_1}, \cdots, \boldsymbol{\hat{e}_n}  \} \in \R^n
+\end{equation}
+\begin{theorem}
+  An $m \times n$ matrix has orthonormal columns iff $U^TU = I$
+\end{theorem}
+\begin{theorem}
+  Let $U$ be an $m \times n$ matrix with orthonormal columns. let $\vec{x}, \vec{y} \in \R^n$. Then:
+  \begin{enumerate}
+    \item $||U\vec{x}|| = ||\vec{x}||$
+    \item $(U\vec{x})\cdot(U\vec{y}) = \vec{x}\cdot \vec{y}$
+    \item $(U\vec{x})\cdot (U\vec{y}) = 0 $ iff $\vec{x} \cdot \vec{y} = 0$
+  \end{enumerate}
+  Note that the mapping $\vec{x} \to U\vec{x}$ preserves lengths and orthogonality of vectors.
+\end{theorem}
+
+\end{document}
