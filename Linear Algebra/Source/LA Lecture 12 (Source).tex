@@ -1,0 +1,122 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amssymb}
+
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+%------------------------------------------------
+%Templates for images and figures
+% \begin{figure}[h]
+%   \centering
+%   \subfloat[caption 1]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \qquad
+%   \subfloat[caption 2]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \caption{Description}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+%   \caption{Description}
+% \end{figure}
+%-----------------------------------------------
+\begin{document}
+\setcounter{section}{11}
+
+\section{Lecture 12: Orthogonal projections (20/03/2020)}
+
+\subsection{Projection on a line}
+Below will follow an intuitive example of the projection of a vector in $\R^2$ on a line $L$. To find the projection of the vector on $L$ we look for the vector which is closest to $\vec{y}$ and on the line $L$. This is done by using the vector $\vec{z}$ which is a vector perpendicular to the line $L$.
+\begin{figure}[h]
+  \centerline{\includegraphics[width=70mm]{images/Projection.png}}
+  \caption{Projection of the vector $\vec{y}$ on the line $L$ where $L = \text{Span}\,\{\vec{u}\}$, $\vec{u} \neq \vec{0}$ and $\text{proj}_L{\vec{y}} = \hat{y}$}
+\end{figure}
+\begin{gather}
+  \hat{y} \;\text{on}\; L,\;\vec{z} \perp L \Rightarrow
+  \begin{cases}
+    \hat{y} = \alpha\vec{u}\\
+    \vec{z} \cdot \vec{u} = 0
+  \end{cases}
+\end{gather}
+\begin{gather}
+  \vec{z} = \vec{y} - \hat{y} = \vec{y} - \alpha \vec{u}\\
+  0 = \vec{z} \cdot \vec{u} = (\vec{y} - \alpha \vec{u}) \cdot \alpha\\
+  \vec{y} \cdot \vec{u} = \alpha \vec{u} \cdot \vec{u}\\
+  \text{Thus: } \alpha = \frac{\vec{y} \cdot \vec{u}}{\vec{u} \cdot \vec{u}}
+\end{gather}
+This then gives an expression for the vector $\vec{y}$:
+\begin{gather}
+  \hat{y} = \alpha \vec{u} = \text{proj}_L(\vec{y}) = \frac{\vec{y} \cdot \vec{u}}{\vec{u} \cdot \vec{u}}\vec{u}\\
+  \text{bra-ket notation: } \notag \\
+  \hat{y} = \frac{\langle \vec{y} | \vec{u} \rangle}{\langle \vec{u} | \vec{u} \rangle}\vec{u} 
+\end{gather}
+
+\subsection{Orthogonal Projections}
+An Orthogonal projection is an extension of the idea of a perpendicular vector in $\R^2$. Orthogonal vectors can be in any $\R^n$ space. As it turns out, for every vector $\vec{y} \in \R^n$ there is a unique vector $\vec{z} \in W^\perp$ which will give the vector $\hat{y} \in W$.
+\begin{theorem}
+  Let $W$ be a subspace of $\R^n$. Then each $\vec{y} \in \R^n$ can be written uniquely in the form:
+  \begin{equation}
+    \vec{y} = \hat{y} + \vec{z}
+  \end{equation}
+  where $\hat{y} = \text{proj}_W(\vec{y}) \in W$ and $\vec{z} \in W^\perp$.
+\end{theorem}
+The projection of $\vec{y}$ onto $W$ is the closest vector $\hat{y}$ in $W$ that is the closest to $\vec{y}$. This can be expressed as:
+\begin{equation}
+  (\vec{y} - \hat{y})\perp W \quad \text{or} \quad (\vec{y} - \hat{y}) \in W^\perp
+\end{equation}
+\begin{theorem}
+  let $\vec{y}$ be a vector in $\R^n$, and $W$ a linear subspace of $\R^n$. There is a unique vecotr $\vec{y} \in W$ and a unique vector $\vec{z} \in W^\perp$ such that:
+  \begin{equation}
+    \vec{y} = \hat{y} + \vec{z}
+  \end{equation}
+  if $\{ \vec{u}_1, \cdots, \vec{u}_k\}$ is an orthogonal basis of $W$ then:
+  \begin{equation}
+    \hat{y} = \sum_{i=1}^k\left(\frac{\langle \vec{u}_i | \vec{y} \rangle}{\langle \vec{u}_i | \vec{u}_i \rangle}\right)
+  \end{equation}
+  Note: if $\vec{y} \in W$, then $\vec{y} = \hat{y}$. This means that if a vector $\vec{y}$ is already in the span of the subspace $W$, then the projection $\hat{y} = \text{proj}_W(\vec{y})$ is the vector $\vec{y}$ itself.
+\end{theorem}
+
+\subsection{Subspaces with an orthonormal basis}
+If the basis in theorem 2 is an orthonormal basis the expression reduces to the following:
+\begin{equation}
+  \hat{y} = \sum_{i=1}^{k} \langle \vec{y} | \vec{u}_i \rangle \vec{u}_i
+\end{equation}
+\begin{theorem}
+  Let $\{\vec{u}_1, \cdots, \vec{u}_p \}$ be an orthonormal basis of $W \subset \R^n$, then:
+  \begin{enumerate}
+  \item $\text{proj}_W(\vec{y}) = UU^T\vec{y}$, with $U = \begin{bmatrix} \vec{u}_1 & \cdots & \vec{u}_p  \end{bmatrix}$
+  \item if $P = UU^T$ is the standard matrix of $\text{proj}_W$, then $P^2 = P = P^T$
+  \end{enumerate}
+\end{theorem}
+
+\subsection{Best approximation}
+\begin{theorem}
+  Let $W$ be a subspace of $\R^n$, $\vec{y}$ a vector in $\R^n$ and $\hat{y}$ an orthogonal projection of $\vec{y}$ onto $W$. Then:
+  \begin{equation}
+    ||\vec{y} - \hat{y} || \leq || \vec{y} - \vec{v} ||
+  \end{equation}
+  for all vectors $\vec{v} \in W$.
+\end{theorem}
+Theorem 4 states that the distance between the vector $\vec{y}$ and the vector $\hat{y}$ is always shorter then the distance from $\vec{y}$ to any random vector $\vec{v}$ in the subspace $W$. The equals symbol is for the case where $\vec{v} = \hat{y}$. The vector $\hat{y}$ is thus referred to as the closest approximation to $\vec{y}$ by elements of $W$. This gives the following expression:
+\begin{equation}
+  \text{dist}(\vec{y}, W) = \text{dist}(\vec{y}, \hat{y}) = ||\vec{y} -\hat{y}||
+\end{equation}
+
+
+\end{document}
