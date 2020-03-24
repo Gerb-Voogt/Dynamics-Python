@@ -40,9 +40,9 @@
 The Instantaneous center of zero velocity, also referred to as the instantenous center of rotation, refers to the idea that any rigid body moving on a 2D plane will have exactly 1 point with an effective instantenous velocity of 0 at a given point in time.
 \begin{figure}[h]
   \centering
-  \subfloat[Moving wheel]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
-  \qquad
-  \subfloat[Moving bar]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+  \subfloat[Moving wheel]{{\includegraphics[width=40mm]{images/Wheel_IC.png}}}%
+  \qquad \qquad \qquad
+  \subfloat[Moving bar]{{\includegraphics[width=40mm]{images/Bar_IC.png}}}%
   \caption{Note that the instantenous center of velocity for a wheel is it's contact point with the ground. The bar can be thought of as rotating about the instantenous center of rotation.}
 \end{figure}
 The IC is in fact not a single unchaniging point, but rather a point that changes over time relative to the motion. It's also important to remember that eventhough the point does not have an instantenous velocity, this does not at all imply that is also has no instantenous acceleration.
@@ -52,9 +52,9 @@ Side note: the problems analyzing absolute motion where sometimes done using tri
 \\
 \begin{figure}[h]
   \centering
-  \subfloat[absolute frame of reference]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
-  \qquad
-  \subfloat[frame of reference for $B$ relative to $A$]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+  \subfloat[absolute frame of reference]{{\includegraphics[width=40mm]{images/Absolute_FOR.png}}}%
+  \qquad \qquad \qquad
+  \subfloat[frame of reference for $B$ relative to $A$]{{\includegraphics[width=40mm]{images/Relative_FOR.png}}}%
   \caption{The difference between analyzing the absolute motion of $B$ and the motion of $B$ with respect to $A$}
 \end{figure}
 The relative position of $B$ can be described as:
@@ -68,8 +68,8 @@ The velocity is then found by taking the time derrivative of equation (1):
 \end{gather}
 $|v_B|=L\omega$ but takes alot of trig to figure out, using vectors simplifies this math.
 \begin{figure}[h]
-  \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
-  \caption{Description}
+  \centerline{\includegraphics[width=50mm]{images/Omega_vector.png}}
+  \caption{Using the cross-product rather then trig}
 \end{figure}
 \begin{equation}
   \omega = \begin{bmatrix} 0\\ 0\\ \omega_z\\ \end{bmatrix},\, \vec{r}_{B/A} = \begin{bmatrix} L\cos(\theta)\\ L\sin(\theta)\\ 0\\ \end{bmatrix}
@@ -97,7 +97,7 @@ For acceleration a systematic vector mechanics method will also be used. Taking 
   \vec{a}_B = \vec{a}_A + \vec{\alpha} \times \vec{r}_{B/A} + \vec{\omega} \times (\vec{\omega} \times \vec{r}_{B/A})
 \end{gather}
 \begin{figure}[h]
-  \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+  \centerline{\includegraphics[width=50mm]{images/Equation_13.png}}
   \caption{Visual representation of the geometry of equation (13).}
 \end{figure}
 Looking at figure 4 the direction of $\vec{\omega} \times (\vec{\omega} \times \vec{r}_{A/B})$ is the same direction as $\vec{r}_{B/A}$. This means that the term $\vec{\omega} \times (\vec{\omega} \times \vec{r}_{A/B}) = -\omega^2\vec{r}_{B/A}$ where $\omega$ is just a scalar. This gives the following equation:
@@ -112,17 +112,17 @@ Important note about rotating frames of reference: The angular velocity with whi
 The coriolis-effect is an interesting effect which can be observed when objects are observed from a rotating frame of reference. In this case object which would go in a straight line when observed from a stationary frame of reference will appear to trace a curved path when observed from a rotating frame of reference. This is a very important effect for any larger scale calculation in say for example meteorolgy. This is because all motion take to be absolute on a smaller scale is in fact measured with respect to the earth which in itself is a mass rotating with the angular velocity $\Omega_{earth} = 7.272(10)^{-5} \rad/s$. Stating that motion is absolute is a good enough approximation but this doesn't hold in larger systems.
 \begin{figure}[h]
   \centering
-  \subfloat[$\vec{v}_B = \vec{v}_A + \vec{\omega} \times \vec{r}_{B/A}$]{{\includegraphics[width=50mm]{images/placeholder.png}}}%
+  \subfloat[$\vec{v}_B = \vec{v}_A + \vec{\omega} \times \vec{r}_{B/A}$]{{\includegraphics[width=50mm]{images/Relative_motion.png}}}%
   \qquad \qquad \qquad
-  \subfloat[$\vec{v}_B = \vec{v}_A + \vec{\omega} \times \vec{r}_{B/A} + (\vec{v}_{B/A})_{xyz}$]{{\includegraphics[width=50mm]{images/placeholder.png}}}%
+  \subfloat[$\vec{v}_B = \vec{v}_A + \vec{\omega} \times \vec{r}_{B/A} + (\vec{v}_{B/A})_{xyz}$]{{\includegraphics[width=50mm]{images/Absolute_motion.png}}}%
   \caption{The absolute motion of $B$ in (a) and the relative motion of $B$ with respect to $A$ in (b)}
 \end{figure}
 the $xyz$-axis represent the frame of reference which is rotating along with $A$ with the angular velocity of $\Omega$. $XYZ$-axis represent the coordinates for absolute motion.\\
 \\
 Very small example involving a rotating frame of reference:
-\begin{figure}[]
-  \centerline{\includegraphics[width=30mm]{images/placeholder.png}}
-  \caption{The relative motion of $\vec{v}_{B/A}$ where the axis $xyz$ rotate along with point $A$.0}
+\begin{figure}[h]
+  \centerline{\includegraphics[width=50mm]{images/Rotating_A.png}}
+  \caption{The relative motion of $\vec{v}_{B/A}$ where the axis $xyz$ rotate along with point $A$.}
 \end{figure}
 \begin{equation}
   (\vec{v}_{B/A})_{xyz} = 
@@ -145,12 +145,12 @@ The relative motion of $AB$ with rotating axis $xyz$ is described as:
   \text{Where } \vec{\Omega} \times \vec{r}_{B/A} + (\vec{v}_{B/A})_{xyz} = \vec{v}_{B/A} \notag
 \end{gather}
 \begin{figure}[h]
-  \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+  \centerline{\includegraphics[width=60mm]{images/Relative_velocities.png}}
   \caption{An example of rotating and non-rotating frames of reference. Note that $(\vec{v}_{B/A})_xyz$ appears to move along the path $\vec{r}_{B/A}$ when viewed from a rotating frame of reference. When this same motion is observed relative to the $XYZ$ frame of reference it will trace a motion which is spiraling.}
 \end{figure}
 To find the acceleration of a rotating frame of reference we take the time derrivative of equation (17). this looks as follows:
 \begin{equation}
-  \vec{a}_B = \vec{a}_A + \vec{\dot{\Omega}} \times \vec{r}_{B/A} + \vec{\Omega} \times \vec{\dot{r}}_{B/A} + (\vec{\dot{v}}_{B/A})_xyz\\
+  \vec{a}_B = \vec{a}_A + \vec{\dot{\Omega}} \times \vec{r}_{B/A} + \vec{\Omega} \times \vec{\dot{r}}_{B/A} + (\vec{\dot{v}}_{B/A})_{xyz}\\
 \end{equation}
 where:
 \begin{gather*}
