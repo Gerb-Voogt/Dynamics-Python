@@ -51,21 +51,21 @@ Before the example there will be a short subsection clearing up confusion betwee
 An ideal spring is a spring where for any elongation it will exert a spring force $F_v = ks$. This is illustrated in the figures below.
 \begin{figure}[h]
   \centering
-  \subfloat[$y=0$]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+  \subfloat[$y=0$]{{\includegraphics[width=30mm]{images/Ideal_Spring_a.png}}}%
   \qquad
-  \subfloat[$y$ is positive]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+  \subfloat[$y$ is positive]{{\includegraphics[width=30mm]{images/Ideal_Spring_b.png}}}%
   \qquad
-  \subfloat[$y$ is negative]{{\includegraphics[width=30mm]{images/placeholder.png}}}
+  \subfloat[$y$ is negative]{{\includegraphics[width=30mm]{images/Ideal_Spring_c.png}}}
   \caption{Force from an ideal spring}
 \end{figure}
 Ideal springs are good for math since they're easy to work with but not so good for realistic results, since ideal springs don't actually exist. In general a real spring will have a zero-length, which is the length in which the spring exerts exactly no force. The principal of a spring with a zero-length is shown in the figure below.
 \begin{figure}[h]
   \centering
-  \subfloat[$y=0$]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+  \subfloat[$y=0$]{{\includegraphics[width=30mm]{images/Non_ideal_spring_a.png}}}%
   \qquad
-  \subfloat[Datum at $l_0$]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+  \subfloat[Datum at $l_0$]{{\includegraphics[width=30mm]{images/Non_ideal_spring_b.png}}}%
   \qquad
-  \subfloat[Datum at $0$]{{\includegraphics[width=30mm]{images/placeholder.png}}}
+  \subfloat[Datum at $0$]{{\includegraphics[width=30mm]{images/Non_ideal_spring_c.png}}}
   \caption{Force from a non-ideal spring}
 \end{figure}
 
@@ -74,9 +74,9 @@ Ideal springs are good for math since they're easy to work with but not so good 
 Templates for images and figures
 \begin{figure}[h]
   \centering
-  \subfloat[Situation]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+  \subfloat[Situation]{{\includegraphics[width=50mm]{images/Spring_with_damper_situation.png}}}%
   \qquad
-  \subfloat[FBD]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+  \subfloat[FBD]{{\includegraphics[width=50mm]{images/Spring_with_damper_FBD.png}}}%
   \caption{Oscilating spring with damper term}
 \end{figure}
 \begin{gather}
@@ -95,9 +95,9 @@ Where equation (4) is a non-homogeneous 2nd order linear ODE\footnote{Ordinary d
 \setcounter{equation}{0}
 \begin{figure}[h]
   \centering
-  \subfloat[Situation]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+  \subfloat[Situation]{{\includegraphics[width=50mm]{images/Torsion_rod_situation.png}}}%
   \qquad
-  \subfloat[FBD]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+  \subfloat[FBD]{{\includegraphics[width=50mm]{images/Torsion_rod_FBD.png}}}%
   \caption{Oscilating plate on a torsion rod}
 \end{figure}
 \begin{gather}
@@ -112,13 +112,39 @@ Subsitute equation (2) and (3) into (1):
 \end{gather}
 Where (4) is the homogeneous 2nd order linear ODE.
 
+\subsection{Complex spring systems example}
+\setcounter{equation}{0}
+There will be situation where computations will be done for spring systems where the oscilation will not be one single spring vibrating, but any random combination of springs in a series or parallel. The following example will cover such a system with 2 springs placed in series with eachother.
+\begin{figure}[h]
+  \centering
+  \subfloat[Situation]{{\includegraphics[width=30mm]{images/Series_springs_situation.png}}}%
+  \qquad
+  \subfloat[FBD springs]{{\includegraphics[width=30mm]{images/Series_springs_FBD_1.png}}}%
+  \qquad
+  \subfloat[FBD mass]{{\includegraphics[width=30mm]{images/Series_springs_FBD_2.png}}}%
+  \caption{Spring system with springs in series rather then a single oscilating spring}
+\end{figure}
+Since Newton's 3rd law states Action = -Reaction:
+\begin{gather}
+  F = k_1x_A \Rightarrow x_A = \frac{F}{k_1} \notag\\
+  F = k_2(x-x_A) \Rightarrow F = k_2x - \frac{k_2}{k_1}F \notag\\
+  F = \frac{k_1k_2}{k_1 + k_2}x
+\end{gather}
+Then when considering the FBD of the vibrating mass:
+\begin{gather}
+  \Sigma F_x = -F = m\ddot{x} \notag\\
+  -\frac{k_1k_2}{k_1 + k_2}x = m\ddot{x} \notag\\
+  m\ddot{x} + \frac{k_1k_2}{k_1 + k_2}x = 0
+\end{gather}
+Where $m\ddot{x} + \frac{k_1k_2}{k_1 + k_2}x = 0$ would be the homogeneous Linear 2nd order ODE that needs to be solved for the answer.
+
 \subsection{Example with non-ideal spring and gravity}
 \setcounter{equation}{0}
 \begin{figure}[h]
   \centering
-  \subfloat[Situation]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+  \subfloat[Situation]{{\includegraphics[width=30mm]{images/Non_ideal_spring_Situation.png}}}%
   \qquad
-  \subfloat[FBD]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+  \subfloat[FBD]{{\includegraphics[width=30mm]{images/Non_ideal_spring_FBD.png}}}%
   \caption{Oscilating non-ideal spring with gravity term}
 \end{figure}
 \begin{gather}
@@ -165,6 +191,4 @@ Where $C_1$ and $C_2$ are random constants which can be determined by solving fo
 \begin{equation}
   y = y_p + y_c = \frac{mg}{k} + C_1 + C_2e^{-\frac{k}{m}y}
 \end{equation}
-
-
 \end{document}
