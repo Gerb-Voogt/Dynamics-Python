@@ -1,0 +1,138 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+%------------------------------------------------
+%Templates for images and figures
+% \begin{figure}[h]
+%   \centering
+%   \subfloat[caption 1]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \qquad
+%   \subfloat[caption 2]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \caption{Description}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+%   \caption{Description}
+% \end{figure}
+%-----------------------------------------------
+
+\begin{document}
+
+\setcounter{section}{13}
+\section{Lecture 14: The least squares problems (27/03/2020)}
+\subsection{Least square solution}
+The least square solution is a method of solving inconsistent linear systems.
+\begin{theorem}
+  $A\vec{x}=\vec{b}$ is consistent iff $\vec{b}\in \text{Col}(A)$, since $\vec{b}$ can then be written as a linear combination of the columns of $A$.
+\end{theorem}
+Thus a system is inconsistent if $\vec{b} \notin \text{Col}(A)$. To solve an inconsistent linear system for the closest possible solution we solve for the vector $\hat{b}$ which is the projection of the vector $\vec{b}$ onto the column space of $A$\footnote{$\text{proj}_{\text{Col}(A)}(\vec{b})$}. The system then becomes:
+\begin{equation}
+  A\hat{x} = \hat{b}
+\end{equation}
+Note that the vector $\vec{x}$ is a different vector then the vector $\hat{x}$. $\vec{x}$ would be the actual solution to the system which we cannot find and $\hat{x}$ is the closest approximate solution to the system. Since the vector $\hat{x}$ is defined to be part of the column space of $A$ we know for a fact that this system is consistent.
+\begin{figure}[h]
+  \centerline{\includegraphics[width=70mm]{images/Projection.png}}
+  \caption{Graphical representation of the projection of the vector $\vec{x}$ onto the column space of $A$ ($W = \text{Col}(A)$)}
+\end{figure}
+An interesting thing to note is the following theorem, which offers a different way of computing the least squares solution.
+\begin{theorem}
+  The following statements are equivelant:
+  \begin{itemize}
+    \item $\hat{x}$ is the LSQ solution to $A\vec{x} = \vec{b}$.
+    \item $\hat{x}$ is the (actual) solution to the equation $A^TA\hat{x} = A^T\vec{b}$.
+  \end{itemize}
+\end{theorem}
+
+\subsection{LSQ Error}
+As mentioned before the solution to the system $A\hat{x}=\hat{b}$ is not an exact solution, but rather the closest possible solution. Not all approximate solutions are made equal. Some will have a large error while some have a smaller error. We can find the error by checking the distance from the vector $\vec{b}$ to the new projected vector $\hat{b}$. This distance represents how much the system had to be adjusted to make it consistent. When the distance is very large a big adjustment to the system had to be made to force consistency. If the distance is very small only a small adjustment had to be made to make the system consistent.
+\begin{equation}
+  \text{dist}(\vec{b},\hat{b}) = ||\vec{b}-\hat{b}|| = ||\vec{b} - A\hat{x}||
+\end{equation}
+
+\subsection{Example with linear regression}
+\setcounter{equation}{0}
+\begin{figure}[H]
+  \centerline{\includegraphics[width=70mm]{images/Linear_regression.png}}
+  \caption{The graph of the inconsistent linear system and the closest consisten solution}
+\end{figure}
+\begin{gather}
+  \text{let:} A =
+  \begin{bmatrix}
+    1 & 1\\
+    1 & 2\\
+    1 & 3\\
+  \end{bmatrix},\;
+  \vec{x} = \begin{bmatrix} \beta_0 \\ \beta_1 \\ \end{bmatrix},\;
+  \vec{b} = \begin{bmatrix} 2\\ 4\\ 0\\ \end{bmatrix}
+\end{gather}
+The column space of $A$ will then be:
+\begin{gather}
+  \text{Col}(A) = \Bigg\{ \begin{bmatrix} 1\\ 1\\ 1\\ \end{bmatrix}
+                  \begin{bmatrix} 1\\ 2\\ 3\\ \end{bmatrix} \Bigg\}
+\end{gather}
+We now apply the Gram-Schmidt process to find an orthogonal basis for the column space of $A$:
+\begin{gather}
+  \vec{v}_1 = \vec{x}_1 = \begin{bmatrix} 1\\ 1\\ 1\\ \end{bmatrix}\\
+  \vec{v}_2 = \vec{x}_2 - \frac{\langle \vec{x}_2 | \vec{v}_1 \rangle}{\langle \vec{v}_1 | \vec{v}_1 \rangle} = \begin{bmatrix} 1\\ 2\\ 3\\ \end{bmatrix} - \frac{6}{3} \begin{bmatrix} 1\\ 1\\ 1\\ \end{bmatrix} = \begin{bmatrix} -1\\ 0\\ 1\\ \end{bmatrix}
+\end{gather}
+The orthogonal basis for will then be $\{\vec{v}_1, \vec{v}_2 \}$ which is:
+\begin{gather}
+  \Bigg\{ 
+    \begin{bmatrix} 1\\ 1\\ 1\\ \end{bmatrix},
+    \begin{bmatrix} -1\\ 0\\ 1\\ \end{bmatrix} 
+  \Bigg\}
+\end{gather}
+The projection of vector $b$ onto the column space of $A$ $\hat{b}$ will then be:
+\begin{align}
+  \text{proj}_{\text{Col}(A)}(\vec{b}) = \hat{b} &= \frac{\langle \vec{b} | \vec{v}_1 \rangle}{\langle \vec{v}_1 | \vec{v}_1 \rangle}\vec{v}_1 + \frac{\langle \vec{b} | \vec{v}_2 \rangle}{\langle \vec{v}_2 | \vec{v}_2 \rangle}\vec{v}_2 \notag\\
+  \hat{b} &= \frac{6}{3}\begin{bmatrix} 1\\ 1\\ 1\\ \end{bmatrix} + \frac{-2}{2}\begin{bmatrix} -1\\ 0\\ 1\\ \end{bmatrix} \notag\\ 
+  \hat{b} &= \begin{bmatrix} 3\\ 2\\ 1\\ \end{bmatrix}
+\end{align}
+The LSQ solution to the problem will then become:
+\begin{gather}
+  A\hat{x} = \hat{b} \Rightarrow
+  \begin{bmatrix}[cc|c]
+    1 & 1 & 3\\
+    1 & 2 & 2\\
+    1 & 3 & 1\\
+  \end{bmatrix}
+  \sim
+  \begin{bmatrix}[cc|c]
+    1 & 1 & 3\\
+    0 & 1 & -1\\
+    0 & 2 & -2\\
+  \end{bmatrix}
+  \sim
+  \begin{bmatrix}[cc|c]
+    1 & 0 & 4\\
+    0 & 1 & -1\\
+    0 & 0 & 0\\
+  \end{bmatrix}\\
+  \text{thus: } \hat{\beta}_0 = 4, \; \hat{\beta}_1 = -1 \Rightarrow 
+  \hat{x} = \begin{bmatrix} \hat{\beta_0}\\ \hat{\beta_1}\\ \end{bmatrix} = \begin{bmatrix} 4\\ -1\\ \end{bmatrix}
+\end{gather}
+Where equation (8) is the closest consistent solution for the linear system.
+\end{document}
