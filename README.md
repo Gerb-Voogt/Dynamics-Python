@@ -6,7 +6,7 @@ repo contains the following:
   - WBMT1051 Mathematics 2: Linear Algebra 1 Lecture Notes (Completed)
   
 Repo might contain the following in the future:
-  - WOP3A Lecture Notes for relevant exam lectures
+  - WOP3A Lecture Notes for relevant exam lectures (UPDATE: IT WON'T)
  
 
 Linear ALgebra lecture 8 and 15 have no lecture notes because these lectures are dedicated to
